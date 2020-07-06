@@ -4,7 +4,9 @@ import paints from "../paints.json"
 import complementCalculator from "../functions/ComplementaryColors"
 
 const ColorDropdown = ({scheme, schemeChange}) => {
-    const list = paints.map(
+    const sortedPaints = paints.sort((a,b) => (a.name < b.name ? -1 : 1));
+    debugger
+    const list = sortedPaints.map(
         paint => {
             const name = paint.name
             const rgbaString = `rgba(${paint.rgba.join(",")})`
