@@ -5,7 +5,6 @@ import complementCalculator from "../functions/ComplementaryColors"
 
 const ColorDropdown = ({scheme, schemeChange}) => {
     const sortedPaints = paints.sort((a,b) => (a.name < b.name ? -1 : 1));
-    debugger
     const list = sortedPaints.map(
         paint => {
             const name = paint.name
