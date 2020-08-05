@@ -6,7 +6,7 @@ import SessionModal from "./sessions/SessionModal";
 import LoginForm from "./sessions/LoginForm";
 import SignupForm from "./sessions/SignupForm";
 
-const SplashHeader = ({setActiveTab, currentUser}) => {
+const SplashHeader = ({setActiveTab, currentUser, setSessionModal}) => {
     let colorsObj = {}
   
     paints.forEach(paint => {

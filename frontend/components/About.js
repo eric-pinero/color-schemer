@@ -16,7 +16,7 @@ const About = () =>{
            </div>
            <img 
                 className="box-200 padding-20" 
-                src="https://www.publicdomainpictures.net/pictures/40000/velka/color-wheel-1364825482ggt.jpg"
+                src="https://pghknitandcrochet.com/2016/wp-content/uploads/2016/08/Color-Wheel-Basics-Full-RGB-color-wheel-600x600.jpg"
                 alt="A color wheel"
             />
            <p className="padding-5">
