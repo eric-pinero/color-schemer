@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import paints from "../paints.json";
 import ColorList from "./ColorList";
 import About from "./About";
-import SessionModal from "./sessions/SessionModal";
-import LoginForm from "./sessions/LoginForm";
-import SignupForm from "./sessions/SignupForm";
 
 const SplashHeader = ({setActiveTab, currentUser, setSessionModal}) => {
     let colorsObj = {}
