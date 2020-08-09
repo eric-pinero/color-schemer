@@ -62,6 +62,7 @@ function complementLocator(color, colorList){
 
 ### Color Scheme Building
 ![](./app/assets/images/color-schemer-select.gif)
+
 A React-Select dropdown menu was populated with The Army Painter acryllic paints line. The names and rgba values were scraped and converted to JSON using a custom webcrawler. By customizing the React-Select attributes, a sample of each color is displayed alongside each option.
 
 
