@@ -2,10 +2,10 @@ import React from "react"
 import SchemeSwatch from "./SchemeSwatch"
 
 
-const ColorSchemeView = ({scheme, schemeChange}) => {
+const ColorSchemeView = ({scheme}) => {
     let schemeView = scheme.length ?
         scheme.map(
-            paint => <SchemeSwatch className="border-1" paint={paint} scheme={scheme} schemeChange={schemeChange}/>
+            paint => <SchemeSwatch className="border-1" paint={paint} scheme={scheme}/>
         )
        :
        null

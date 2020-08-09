@@ -60,10 +60,10 @@ function complementLocator(color, colorList){
 ```
 
 
-### Color Selection Dropdown
+### Color Scheme Building
+![](./app/assets/images/color-schemer-select.gif)
 A React-Select dropdown menu was populated with The Army Painter acryllic paints line. The names and rgba values were scraped and converted to JSON using a custom webcrawler. By customizing the React-Select attributes, a sample of each color is displayed alongside each option.
 
-![](./app/assets/images/color-schemer-select.gif)
 
 ```JavaScript
     const list = sortedPaints.map(
@@ -92,3 +92,5 @@ A React-Select dropdown menu was populated with The Army Painter acryllic paints
         }
     )
 ```
+
+By connecting the user's color scheme to a useState hook and passing the state manipulation function (schemeChange) to the ColorDropdown component and the state (scheme) to the SchemeView component, the color scheme is rendered with each selection. Furthermore, selections can be removed from any part of the scheme with the remaining choices' relative order being preserved.

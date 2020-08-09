@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
-// import PaintItem from "./PaintItem"
 import ColorSchemeView from "./ColorSchemeView"
-// import complementCalculator from "../functions/ComplementaryColors"
 import ColorDropdown from "./ColorDropdown"
 
 const ColorList = () => {
@@ -13,7 +11,7 @@ const ColorList = () => {
                 <h2 className="f-20 padding-10 red">Army Painter Colors</h2>
                 <ColorDropdown scheme={scheme} schemeChange={schemeChange}/>
             </div>
-            <ColorSchemeView className="margin-5 border-1" scheme = {scheme} schemeChange={schemeChange}/>
+            <ColorSchemeView className="margin-5 border-1" scheme = {scheme}/>
       </div>
     )
 }
