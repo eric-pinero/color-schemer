@@ -16,7 +16,7 @@ Color Schemer is a single page app for helping the user determine possible color
 
 [Live Site](https://color-schemer.herokuapp.com/#/)
 
-![](./app/assets/images/learn.gif)
+![](./app/assets/images/color-schemer-splash.gif)
 
 ### Complementary Color Calculation
 The formula for determining the exact complement for an rgb color is fairly straightforward: 255 - each color value.
@@ -63,6 +63,8 @@ function complementLocator(color, colorList){
 ### Color Selection Dropdown
 A React-Select dropdown menu was populated with The Army Painter acryllic paints line. The names and rgba values were scraped and converted to JSON using a custom webcrawler. By customizing the React-Select attributes, a sample of each color is displayed alongside each option.
 
+![](./app/assets/images/color-schemer-select.gif)
+
 ```JavaScript
     const list = sortedPaints.map(
         paint => {
@@ -90,6 +92,3 @@ A React-Select dropdown menu was populated with The Army Painter acryllic paints
         }
     )
 ```
-
-
-
