@@ -29,7 +29,7 @@ const App = () => {
   return (
     <div className="App">
       <div className="min-h-80percent h-fit bg-yellow">
-        <SplashHeader setActiveTab={setActiveTab} setSessionModal={setSessionModal} currentUser={currentUser}/>
+        <SplashHeader setActiveTab={setActiveTab} setSessionModal={setSessionModal} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
         {activeTab}
         <Footer/>
       </div>

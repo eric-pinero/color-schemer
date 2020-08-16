@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {login} from '../../util/sessionAPIUtil';
 
-const LoginForm = ({setSessionModal}) => {
+const LoginForm = ({setSessionModal, setCurrentUser}) => {
     let [emailAddress, setEmailAddress] = useState( "" );
     let [password, setPassword] = useState( "" );
     let [errors, setErrors] = useState([])
@@ -33,9 +33,10 @@ const LoginForm = ({setSessionModal}) => {
                 email: emailAddress,
                 password: password
             }
-            login(user).then((success,failure) =>{
+            login(user).then((currentUser,failure) =>{
 
-                if (success){
+                if (currentUser){
+                    setCurrentUser(currentUser)
                     setEmailAddress("");
                     setPassword("");
                     setSessionModal(null);

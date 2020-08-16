@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState} from "react";
 import paints from "../paints.json";
 import ColorList from "./ColorList";
 import About from "./About";
+import {logout} from "../util/sessionAPIUtil"
 
-const SplashHeader = ({setActiveTab, currentUser, setSessionModal}) => {
+const SplashHeader = ({setActiveTab, currentUser, setCurrentUser, setSessionModal}) => {
     let colorsObj = {}
   
     paints.forEach(paint => {
@@ -32,6 +33,18 @@ const SplashHeader = ({setActiveTab, currentUser, setSessionModal}) => {
         </p>
     ;
 
+    const handleLogout = () =>{
+        logout(currentUser).then((loggedOut,failure) =>{
+            if (loggedOut){
+                setCurrentUser(null)
+            }
+            else {
+                console.log(failure);
+            };
+        });
+    };
+
+
     const signupLink = currentUser ? 
         null
         :
@@ -39,6 +52,13 @@ const SplashHeader = ({setActiveTab, currentUser, setSessionModal}) => {
             onClick={()=> setSessionModal("signup") }>Signup
         </p>
     ;
+
+    const logoutLink = currentUser ?
+        <p className="link pointer bold padding-l-10" 
+            onClick={() => handleLogout()}>Logout
+        </p>
+        :
+        null
 
     return (
         <header className="flex column bg-red shadow margin-b-10 padding-b-10">
@@ -62,6 +82,7 @@ const SplashHeader = ({setActiveTab, currentUser, setSessionModal}) => {
                 <p className="link pointer bold padding-l-10 border-r-s-1 border-white padding-r-10" 
                     onClick={()=> setActiveTab(<ColorList/>) }>Scheme Selector
                 </p>
+                {logoutLink}
                 {loginLink}
                 {signupLink}
             </div>

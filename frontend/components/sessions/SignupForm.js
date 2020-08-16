@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {signup} from '../../util/sessionAPIUtil';
 
-const SignupForm = ({setSessionModal}) => {
+const SignupForm = ({setSessionModal, setCurrentUser}) => {
     let [emailAddress, setEmailAddress] = useState( "" );
     let [secondEmail, setSecondEmail] = useState( "" );
     let [password, setPassword] = useState( "" );
@@ -40,12 +40,17 @@ const SignupForm = ({setSessionModal}) => {
                 email: emailAddress,
                 password: password
             }
-            signup(user)
-            setEmailAddress("")
-            setSecondEmail("")
-            setPassword("")
-            setSecondPassword("")
-            setSessionModal(null)
+            signup(user).then((currentUser) =>{
+
+                if (currentUser){
+                    setCurrentUser(currentUser)
+                    setEmailAddress("")
+                    setSecondEmail("")
+                    setPassword("")
+                    setSecondPassword("")
+                    setSessionModal(null)
+                }
+            })
         } else{
         }
     }
