@@ -4,7 +4,6 @@ class Scheme_Swatch < ApplicationRecord
     has_one :color
     belongs_to :scheme
 
-
     def complement
         color.complement
     end
