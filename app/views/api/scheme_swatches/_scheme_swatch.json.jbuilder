@@ -1,0 +1,1 @@
+json.extract! scheme_swatch, :id, :color, :complement, :scheme_id

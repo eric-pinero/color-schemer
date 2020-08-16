@@ -1,0 +1,1 @@
+json.partial! 'api/scheme_swatchs/scheme_swatch', scheme_swatch: @scheme_swatch

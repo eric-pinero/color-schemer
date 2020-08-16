@@ -5,6 +5,10 @@ class Color < ApplicationRecord
     def complement
         Color.find(complement_id)
     end
+    
+    def rgb
+        [color.red, color.green, color.blue]
+    end
 
 end
   
