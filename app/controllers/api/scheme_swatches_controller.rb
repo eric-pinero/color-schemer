@@ -4,7 +4,7 @@ class Api::SchemeSwatchesController < ApplicationController
         if @scheme_swatch.save
             render :show
         else
-            render json: @scheme_swatch.errors.full_messages, status: 401
+            render json: @scheme_swatch.errors.full_messages, status: 422
         end
     end
 

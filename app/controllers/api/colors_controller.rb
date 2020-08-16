@@ -4,7 +4,7 @@ class Api::ColorsController < ApplicationController
         if @color.save
             render :show
         else
-            render json: @color.errors.full_messages, status: 401
+            render json: @color.errors.full_messages, status: 422
         end
     end
 
