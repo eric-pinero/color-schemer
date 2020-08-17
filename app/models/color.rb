@@ -1,13 +1,17 @@
 class Color < ApplicationRecord
     validates :complement_id, :name, :red, :green, :blue, presence: true
 
-    belongs_to :scheme_swatch
     def complement
-        Color.find(complement_id)
+        complement = Color.find(complement_id)
+        {
+            "id" => complement_id,
+            "rgb" => complement.rgb,
+            "name" => complement.name
+        }
     end
     
     def rgb
-        [color.red, color.green, color.blue]
+        [red, green, blue]
     end
 
 end

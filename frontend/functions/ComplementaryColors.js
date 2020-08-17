@@ -9,13 +9,13 @@ function complementCalculator(color){
 }
 
 function complementLocator(color, colorList){
-    const trueComplement = complementCalculator(color.rgba.slice(0, 3))
+    const trueComplement = complementCalculator(color.rgb)
     let closestComplement
     let leastDelta = 765
 
     for (let i = 0; i < colorList.length; i++){
         const paint = colorList[i]
-        const rgb = paint.rgba.slice(0, 3)
+        const rgb = paint.rgb
         let delta = 0
 
         for (let i = 0; i < rgb.length; i++) {

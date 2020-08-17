@@ -1,6 +1,6 @@
-export const fetchColors = () =>{
-    $.ajax({ 
-            method:'GET',
-            url: '/api/colors',
-    })
+export const fetchColors = () => {
+    return($.ajax({ 
+        method:'GET',
+        url: '/api/colors'
+    }))
 }

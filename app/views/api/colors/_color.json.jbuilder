@@ -1,1 +1,1 @@
-json.extract! color, :id, :name, :rgb, :complement_id
+json.extract! color, :id, :name, :rgb, :complement

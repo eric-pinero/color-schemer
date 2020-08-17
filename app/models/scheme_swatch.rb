@@ -1,4 +1,4 @@
-class Scheme_Swatch < ApplicationRecord
+class SchemeSwatch < ApplicationRecord
     validates :color_id, :scheme_id, presence: true
 
     has_one :color
