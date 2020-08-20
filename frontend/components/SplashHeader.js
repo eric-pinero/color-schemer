@@ -64,7 +64,7 @@ const SplashHeader = ({setActiveTab, currentUser, setCurrentUser, setSessionModa
         <header className="flex column bg-red shadow margin-b-10 padding-b-10">
             <div className="flex justify-center align-center">
                 <h1 
-                    className="f-50 padding-20 bg-lightgrey w-fit-content white" 
+                    className="f-50 padding-20 w-fit-content white" 
                 >
                     Welcome to&nbsp;
                     <span className="bold txt-stroke-white" style={{ color : colorString }}>

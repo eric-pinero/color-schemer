@@ -4,6 +4,7 @@ import {fetchColors} from '../util/colorsAPIUtil'
 
 const ColorDropdown = ({scheme, schemeChange}) => {
     let [paints, setPaints] = useState([]);
+    let [dropdownVisible, setDropdownVisible]  = useState(false)
 
     if(paints.length === 0){
         fetchColors().then((response, error) =>{
@@ -36,15 +37,12 @@ const ColorDropdown = ({scheme, schemeChange}) => {
                 marginLeft: "10px"
                 }}
             />
-        return({
-            "label": 
-                <li key={paint.id} className="flex">
-                    <span>{name}</span>
-                    {dot}
-                </li>,
-            "value": {...paint, complement: paint.complement },
-            "key":name
-        })
+        return(
+            <li key={paint.id} className="flex padding-10 hover-blue" >
+                <span>{name}</span>
+                {dot}
+            </li>
+        )
 
     }
 
@@ -79,27 +77,38 @@ const ColorDropdown = ({scheme, schemeChange}) => {
         }
     )
 
-    const selectedColorsBuilder = (colors) => (
-        colors.map((color) => paintItemBuilder(color))
-    )
+    const selectedColorsBuilder = (colors) => {
+        return colors.map((color) => paintItemBuilder(color))
+    }
+    
+    const placeholderText = scheme.length ? "" : "Select or Search"
+    let selectedColors = 
+    <ul className="flex bg-white">{selectedColorsBuilder(scheme)}
+        <input className="outline-none border-none" placeholder={placeholderText} type="text"/>
+    </ul>
 
-    let selectedColors = <ul className="flex"></ul>
 
-    let colorSelector = <ul>{list2}</ul> 
+    let colorSelector = dropdownVisible ? <ul className="bg-white overflow-scroll h-50percent">{list2}</ul> : null
 
 
     const handleChange = (selected) => {
         const change = selected ? selected.map(selection => selection.value) : []
         schemeChange(change)
     }
-
     return(
+        <>
         <Select 
             isMulti
             options = {list}
             closeMenuOnSelect = {false}
             onChange = {handleChange}
         />
+
+        <div onClick={() => setDropdownVisible(!dropdownVisible)}>
+            {selectedColors}
+            {colorSelector}
+        </div>
+        </>
     )
 }
 

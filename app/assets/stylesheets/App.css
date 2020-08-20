@@ -184,6 +184,10 @@ button{
 
 
 /* height options */
+.h-50percent{
+  height: 25%;
+}
+
 .h-100percent{
   height: 100%;
 }
@@ -257,6 +261,10 @@ button{
 
 
 /* border options */
+.border-none{
+  border: none;
+}
+
 .border-1 {
   border: 1px solid black;
 }
@@ -296,6 +304,11 @@ button{
 
 .border-red {
   border-color: #6b0407; 
+}
+
+/* outline options */
+.outline-none{
+  outline: none;
 }
 
 /* shadow options */
@@ -358,6 +371,15 @@ button{
   margin: 5px;
 }
 
+.margin-10{
+  margin: 10px;
+}
+
+.hover-blue:hover{
+  background: rgb(16, 194, 253, 0.25);
+
+}
+
 .margin-l-10 {
   margin-left: 10px;
 }
@@ -384,6 +406,10 @@ button{
 /* overflow options */
 .overflow-auto{
   overflow: auto;
+}
+
+.overflow-scroll{
+  overflow: scroll;
 }
 
 /* text alignment options */
