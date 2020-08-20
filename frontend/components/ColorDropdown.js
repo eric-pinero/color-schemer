@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select'
-// import paints from '../paints.json'
-import complementCalculator from '../functions/ComplementaryColors'
 import {fetchColors} from '../util/colorsAPIUtil'
 
 const ColorDropdown = ({scheme, schemeChange}) => {
@@ -24,6 +22,32 @@ const ColorDropdown = ({scheme, schemeChange}) => {
         })
     }
     const sortedPaints = paints.sort((a,b) => (a.name < b.name ? -1 : 1));
+
+    const paintItemBuilder = (paint) => {
+        const name = paint.name
+        const rgbString = `rgb(${paint.rgb.join(",")})`
+        const dot = 
+            <div style= {{
+                background: rgbString,
+                border: "1px solid black",
+                height: "15px",
+                width: "15px",
+                borderRadius: "15px",
+                marginLeft: "10px"
+                }}
+            />
+        return({
+            "label": 
+                <li key={paint.id} className="flex">
+                    <span>{name}</span>
+                    {dot}
+                </li>,
+            "value": {...paint, complement: paint.complement },
+            "key":name
+        })
+
+    }
+
     const list = sortedPaints.map(
         paint => {
             const name = paint.name
@@ -48,6 +72,40 @@ const ColorDropdown = ({scheme, schemeChange}) => {
             })
         }
     )
+
+    const list2 = sortedPaints.map(
+        paint => {
+            const name = paint.name
+            const rgbString = `rgb(${paint.rgb.join(",")})`
+            const dot = <div style= {{
+                background: rgbString,
+                border: "1px solid black",
+                height: "15px",
+                width: "15px",
+                borderRadius: "15px",
+                marginLeft: "10px"
+                }}
+            />
+            return({
+                "label": 
+                    <li key={paint.id} className="flex">
+                        <span>{name}</span>
+                        {dot}
+                    </li>,
+                "value": {...paint, complement: paint.complement },
+                "key":name
+            })
+        }
+    )
+
+    const selectedColorsBuilder = (colors) => (
+        colors.map()
+    )
+
+    let selectedColors = <ul className="flex"></ul>
+
+    let colorSelector = <ul>{list2}</ul> 
+
 
     const handleChange = (selected) => {
         const change = selected ? selected.map(selection => selection.value) : []
