@@ -75,31 +75,12 @@ const ColorDropdown = ({scheme, schemeChange}) => {
 
     const list2 = sortedPaints.map(
         paint => {
-            const name = paint.name
-            const rgbString = `rgb(${paint.rgb.join(",")})`
-            const dot = <div style= {{
-                background: rgbString,
-                border: "1px solid black",
-                height: "15px",
-                width: "15px",
-                borderRadius: "15px",
-                marginLeft: "10px"
-                }}
-            />
-            return({
-                "label": 
-                    <li key={paint.id} className="flex">
-                        <span>{name}</span>
-                        {dot}
-                    </li>,
-                "value": {...paint, complement: paint.complement },
-                "key":name
-            })
+            return paintItemBuilder(paint)
         }
     )
 
     const selectedColorsBuilder = (colors) => (
-        colors.map()
+        colors.map((color) => paintItemBuilder(color))
     )
 
     let selectedColors = <ul className="flex"></ul>
