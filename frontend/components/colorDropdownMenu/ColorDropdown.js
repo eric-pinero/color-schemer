@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select'
-import {fetchColors} from '../util/colorsAPIUtil'
+import {fetchColors} from '../../util/colorsAPIUtil'
+import SelectedColors from './SelectedColors'
 
 const ColorDropdown = ({scheme, schemeChange}) => {
     let [paints, setPaints] = useState([]);
     let [dropdownVisible, setDropdownVisible]  = useState(false)
+
+    
 
     if(paints.length === 0){
         fetchColors().then((colors, error) =>{
@@ -37,7 +40,7 @@ const ColorDropdown = ({scheme, schemeChange}) => {
                 }}
             />
         return(
-            <li key={paint.id} className="flex padding-10 hover-blue" onClick={()=>handleChange(paint)} >
+            <li key={paint.id} className="flex padding-10 hover-blue" onClick={(e)=>handleAdd(paint)} >
                 <span>{name}</span>
                 {dot}
             </li>
@@ -77,24 +80,18 @@ const ColorDropdown = ({scheme, schemeChange}) => {
         }
     )
 
-    const selectedColorsBuilder = (colors) => {
-        return colors.map((color) => paintItemBuilder(color))
-    }
-    
-    const placeholderText = scheme.length ? "" : "Select or Search"
-    let selectedColors = 
-    <ul className="flex bg-white border-rad-5">{selectedColorsBuilder(scheme)}
-        <input className="outline-none border-none" placeholder={placeholderText} type="text"/>
-    </ul>
-
-
     let colorSelector = dropdownVisible ? <ul className="bg-white overflow-scroll vh-50percent border-rad-5">{list2}</ul> : null
 
 
-    const handleChange = (selected) => {
-        debugger
-        const change = selected ? selected.map(selection => selection.value) : []
-        schemeChange(change)
+    const handleChange = (e,selected) => {
+        const change = selected ? selected.map(selection => selection.value) : [];
+        schemeChange(change);
+    }
+
+    const handleAdd = (e) => {
+        if (!scheme.includes(e)){
+            schemeChange(scheme.concat(e))
+        }
     }
     return(
         <>
@@ -105,8 +102,8 @@ const ColorDropdown = ({scheme, schemeChange}) => {
             onChange = {handleChange}
         />
 
-        <div onClick={() => setDropdownVisible(!dropdownVisible)}>
-            {selectedColors}
+        <div onClick={(e) => setDropdownVisible(!dropdownVisible)}>
+            <SelectedColors scheme={scheme} schemeChange={schemeChange}/>
             {colorSelector}
         </div>
         </>

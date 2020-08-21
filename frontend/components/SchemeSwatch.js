@@ -2,7 +2,6 @@ import React from "react"
 
 const SchemeSwatch = ({paint}) => {
     const complement = paint.complement
-    debugger
     return(
         <li className="flex align-center justify-center w-100percent margin-b-10">
             <p className="w-200 margin-5">Color: <br/> {paint.name}</p>
