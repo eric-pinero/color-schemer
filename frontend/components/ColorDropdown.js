@@ -7,15 +7,14 @@ const ColorDropdown = ({scheme, schemeChange}) => {
     let [dropdownVisible, setDropdownVisible]  = useState(false)
 
     if(paints.length === 0){
-        fetchColors().then((response, error) =>{
-            if (response) {
+        fetchColors().then((colors, error) =>{
+            if (colors) {
                 let idNum = 1;
                 const paintsArr = []
-                while (response[idNum]){
-                    paintsArr.push(response[idNum])
+                while (colors[idNum]){
+                    paintsArr.push(colors[idNum])
                     idNum++
                 }
-
                 setPaints(paintsArr)
             } else {
                 console.log(error)
@@ -38,7 +37,7 @@ const ColorDropdown = ({scheme, schemeChange}) => {
                 }}
             />
         return(
-            <li key={paint.id} className="flex padding-10 hover-blue" >
+            <li key={paint.id} className="flex padding-10 hover-blue" onClick={()=>handleChange(paint)} >
                 <span>{name}</span>
                 {dot}
             </li>
@@ -73,7 +72,8 @@ const ColorDropdown = ({scheme, schemeChange}) => {
 
     const list2 = sortedPaints.map(
         paint => {
-            return paintItemBuilder(paint)
+            const paintItem = paintItemBuilder(paint)
+            return paintItem
         }
     )
 
@@ -83,15 +83,16 @@ const ColorDropdown = ({scheme, schemeChange}) => {
     
     const placeholderText = scheme.length ? "" : "Select or Search"
     let selectedColors = 
-    <ul className="flex bg-white">{selectedColorsBuilder(scheme)}
+    <ul className="flex bg-white border-rad-5">{selectedColorsBuilder(scheme)}
         <input className="outline-none border-none" placeholder={placeholderText} type="text"/>
     </ul>
 
 
-    let colorSelector = dropdownVisible ? <ul className="bg-white overflow-scroll h-50percent">{list2}</ul> : null
+    let colorSelector = dropdownVisible ? <ul className="bg-white overflow-scroll vh-50percent border-rad-5">{list2}</ul> : null
 
 
     const handleChange = (selected) => {
+        debugger
         const change = selected ? selected.map(selection => selection.value) : []
         schemeChange(change)
     }

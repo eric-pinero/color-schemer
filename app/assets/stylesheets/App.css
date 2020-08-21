@@ -196,6 +196,10 @@ button{
   height: 107%;
 }
 
+.vh-50percent{
+  height: 50vh;
+}
+
 .vh-100percent{
   height: 100vh;
 }
