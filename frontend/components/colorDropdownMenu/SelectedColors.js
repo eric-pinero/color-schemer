@@ -22,7 +22,6 @@ const SelectedColors = ({scheme, schemeChange}) =>{
             <li key={paint.id} className="flex padding-10 hover-blue" onClick={()=>handleRemove(paint)}>
                 <span>{name}</span>
                 {dot}
-                <p onClick={(e)=>handleRemove(e)}>X</p>
             </li>
         )
         
@@ -30,8 +29,11 @@ const SelectedColors = ({scheme, schemeChange}) =>{
 
     const handleRemove = (paint) => {
         const paintIndex = scheme.indexOf(paint);
+        const updatedScheme = scheme;
+        updatedScheme.splice(paintIndex, 1);
         debugger
-        schemeChange(scheme.splice(paintIndex, 1))
+        schemeChange(updatedScheme);
+        debugger
     }
     
     const selectedColorsBuilder = (colors) => {

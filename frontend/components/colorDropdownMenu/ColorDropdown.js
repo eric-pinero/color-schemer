@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Select from 'react-select'
 import {fetchColors} from '../../util/colorsAPIUtil'
 import SelectedColors from './SelectedColors'
+import ColorSelector from './ColorSelector'
 
 const ColorDropdown = ({scheme, schemeChange}) => {
     let [paints, setPaints] = useState([]);
-    let [dropdownVisible, setDropdownVisible]  = useState(false)
-
-    
+    let [dropdownVisible, setDropdownVisible] = useState(false);
+    let [searchCriteria, setSearchCriteria] = useState(null);
 
     if(paints.length === 0){
         fetchColors().then((colors, error) =>{
@@ -95,16 +95,17 @@ const ColorDropdown = ({scheme, schemeChange}) => {
     }
     return(
         <>
-        <Select 
+        {/* <Select 
             isMulti
             options = {list}
             closeMenuOnSelect = {false}
             onChange = {handleChange}
-        />
+        /> */}
 
         <div onClick={(e) => setDropdownVisible(!dropdownVisible)}>
             <SelectedColors scheme={scheme} schemeChange={schemeChange}/>
             {colorSelector}
+            <ColorSelector />
         </div>
         </>
     )

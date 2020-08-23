@@ -3,6 +3,7 @@ import SchemeSwatch from "./SchemeSwatch"
 
 
 const ColorSchemeView = ({scheme}) => {
+    debugger
     let schemeView = scheme.length ?
         scheme.map(
             paint => <SchemeSwatch className="border-1" paint={paint} scheme={scheme} key={`${Math.floor(Math.random() * 100)}`}/>
