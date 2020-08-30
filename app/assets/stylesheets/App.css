@@ -157,6 +157,10 @@ button{
   justify-content: space-around;
 }
 
+.flex-wrap{
+  flex-wrap: wrap;
+}
+
 /* cursor options */
 .pointer {
   cursor: pointer;
@@ -188,8 +192,8 @@ button{
   height: 0;
 }
 
-.h-50percent{
-  height: 25%;
+.h-25px{
+  height: 25px;
 }
 
 .h-100percent{

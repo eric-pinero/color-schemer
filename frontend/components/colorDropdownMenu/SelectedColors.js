@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SelectedColors = ({scheme, schemeChange}) =>{
+const SelectedColors = ({scheme, schemeChange, dropdownVisible, setDropdownVisible}) =>{
 
     
     const placeholderText = scheme.length ? "" : "Select or Search"
@@ -28,6 +28,7 @@ const SelectedColors = ({scheme, schemeChange}) =>{
     }
 
     const handleRemove = (paint) => {
+        debugger
         const paintIndex = scheme.indexOf(paint);
         const updatedScheme = scheme;
         updatedScheme.splice(paintIndex, 1);
@@ -41,9 +42,9 @@ const SelectedColors = ({scheme, schemeChange}) =>{
     const selectedColorItems = scheme.length ? selectedColorsBuilder(scheme) : null;
 
     let selectedColorsList = 
-    <ul className="flex bg-white border-rad-5">
+    <ul className="flex bg-white border-rad-5 flex-wrap" >
         {selectedColorItems}
-        <input className="outline-none border-none" placeholder={placeholderText} type="text"/>
+        <input className="outline-none border-none margin-l-10 h-25px w-80percent pointer" placeholder={placeholderText} type="text" onClick={(e) => setDropdownVisible(!dropdownVisible)}/>
     </ul>
     return(
         <>
