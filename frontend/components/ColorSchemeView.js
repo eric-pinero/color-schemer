@@ -1,8 +1,12 @@
-import React from "react"
+import React, {useContext} from "react"
 import SchemeSwatch from "./SchemeSwatch"
+import SchemeContext from "../contexts/SchemeContext"
+
 
 
 const ColorSchemeView = ({scheme}) => {
+    
+    let test = useContext(SchemeContext)
     debugger
     let schemeView = scheme.length ?
         scheme.map(

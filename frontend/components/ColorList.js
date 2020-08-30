@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import ColorSchemeView from "./ColorSchemeView"
-import ColorDropdown from "./colorDropdownMenu/ColorDropdown"
+import ColorSchemeView from './ColorSchemeView'
+import ColorDropdown from './colorDropdownMenu/ColorDropdown'
 
 const ColorList = () => {
     let [scheme, schemeChange] = useState([]);

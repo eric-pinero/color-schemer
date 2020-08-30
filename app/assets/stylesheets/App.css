@@ -184,6 +184,10 @@ button{
 
 
 /* height options */
+.h-0{
+  height: 0;
+}
+
 .h-50percent{
   height: 25%;
 }
@@ -463,4 +467,9 @@ button{
 /* list option */
 .style-disc{
   list-style: disc;
+}
+
+/* transitions */
+.ease-in-h{
+  transition: height 0.5s;
 }

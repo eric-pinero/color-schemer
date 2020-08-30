@@ -13,9 +13,10 @@ const SplashHeader = ({setActiveTab, currentUser, setCurrentUser, setSessionModa
     
     let randomId = () => (
       Math.floor(Math.random() * paints.length + 1)
-      )
+    );
       
     let [randomColor, setRandomColor] = useState(colorsObj[1]);
+
     let colorString = `rgba(${randomColor.rgba.join(",")})`;
     let colorName = randomColor.name
 

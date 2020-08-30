@@ -31,9 +31,7 @@ const SelectedColors = ({scheme, schemeChange}) =>{
         const paintIndex = scheme.indexOf(paint);
         const updatedScheme = scheme;
         updatedScheme.splice(paintIndex, 1);
-        debugger
         schemeChange(updatedScheme);
-        debugger
     }
     
     const selectedColorsBuilder = (colors) => {

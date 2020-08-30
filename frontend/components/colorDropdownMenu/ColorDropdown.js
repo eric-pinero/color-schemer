@@ -3,11 +3,13 @@ import Select from 'react-select'
 import {fetchColors} from '../../util/colorsAPIUtil'
 import SelectedColors from './SelectedColors'
 import ColorSelector from './ColorSelector'
+import SchemeContext from '../../contexts/SchemeContext'
 
 const ColorDropdown = ({scheme, schemeChange}) => {
     let [paints, setPaints] = useState([]);
     let [dropdownVisible, setDropdownVisible] = useState(false);
     let [searchCriteria, setSearchCriteria] = useState(null);
+    
 
     if(paints.length === 0){
         fetchColors().then((colors, error) =>{
@@ -80,10 +82,10 @@ const ColorDropdown = ({scheme, schemeChange}) => {
         }
     )
 
-    let colorSelector = dropdownVisible ? <ul className="bg-white overflow-scroll vh-50percent border-rad-5">{list2}</ul> : null
+    let selectorHeight = dropdownVisible ? "vh-50percent" : "h-0"
+    let colorSelector = <ul className={`bg-white overflow-scroll ${selectorHeight} border-rad-5 ease-in-h`}>{list2}</ul>
 
-
-    const handleChange = (e,selected) => {
+    const handleChange = (selected) => {
         const change = selected ? selected.map(selection => selection.value) : [];
         schemeChange(change);
     }
