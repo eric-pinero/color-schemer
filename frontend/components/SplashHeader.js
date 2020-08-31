@@ -34,6 +34,30 @@ const SplashHeader = ({setActiveTab, currentUser, setCurrentUser, setSessionModa
         </p>
     ;
 
+    const signupLink = currentUser ? 
+        null
+        :
+        <p className="link pointer bold padding-l-10" 
+            onClick={()=> setSessionModal("signup") }>Signup
+        </p>
+    ;
+
+    const schemesLink = currentUser ?
+        <p className="link pointer bold padding-l-10" 
+            onClick={() => setActiveTab(<Schemes schemes={currentUser.schemes}/>)}>Schemes
+        </p>
+        :
+        null
+    ;   
+
+    const logoutLink = currentUser ?
+        <p className="link pointer bold padding-l-10" 
+            onClick={() => handleLogout()}>Logout
+        </p>
+        :
+        null
+    ;
+
     const handleLogout = () =>{
         logout(currentUser).then((loggedOut,failure) =>{
             if (loggedOut){
@@ -44,23 +68,7 @@ const SplashHeader = ({setActiveTab, currentUser, setCurrentUser, setSessionModa
             };
         });
     };
-
-
-    const signupLink = currentUser ? 
-        null
-        :
-        <p className="link pointer bold padding-l-10" 
-            onClick={()=> setSessionModal("signup") }>Signup
-        </p>
-    ;
-
-    const logoutLink = currentUser ?
-        <p className="link pointer bold padding-l-10" 
-            onClick={() => handleLogout()}>Logout
-        </p>
-        :
-        null
-
+        
     return (
         <header className="flex column bg-red shadow margin-b-10 padding-b-10">
             <div className="flex justify-center align-center">

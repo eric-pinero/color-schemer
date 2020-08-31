@@ -75,28 +75,28 @@ const SignupForm = ({setSessionModal, setCurrentUser}) => {
             <header className="bg-red shadow padding-20 bold white border-rad-5">Sign Up Today!</header>
             <form className="flex column padding-20 align-center" onSubmit={handleSubmit}>
                 {errorList}
-                <label for="email" className="margin-b-5">Email Address</label>
+                <label htmlFor="email" className="margin-b-5">Email Address</label>
                 <input id="email" className="w-80percent margin-b-20" 
                     type="email" 
                     value={emailAddress} 
                     onChange={handleChange(setEmailAddress)}
                 />
 
-                <label for="reenterEmail" className="margin-b-5">Re-enter Email Address</label>
+                <label htmlFor="reenterEmail" className="margin-b-5">Re-enter Email Address</label>
                 <input id="reenterEmail" className="w-80percent margin-b-20" 
                     type="email" 
                     value={secondEmail} 
                     onChange={handleChange(setSecondEmail)}
                 />
                 
-                <label for="password" className="margin-b-5">Password</label>
+                <label htmlFor="password" className="margin-b-5">Password</label>
                 <input id="password" className="w-80percent margin-b-20" 
                     type="password" 
                     value={password} 
                     onChange={handleChange(setPassword)}
                 />
 
-                <label for="reenterPassword" className="margin-b-5">Re-enter Password</label>
+                <label htmlFor="reenterPassword" className="margin-b-5">Re-enter Password</label>
                 <input id="reenterPassword" className="w-80percent margin-b-20" 
                     type="password" 
                     value={secondPassword} 

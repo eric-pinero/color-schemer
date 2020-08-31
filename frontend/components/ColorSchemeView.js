@@ -15,6 +15,7 @@ const ColorSchemeView = ({scheme}) => {
        null
     ;
     const schemeViewStyle = scheme.length ? "border-1 border-rad-15 border-red bg-lightyellow padding-10" : "";
+    debugger
     return(
         <div className="flex column w-45percent h-fit red">
             <h2 className="f-20 padding-10">Your Scheme</h2>

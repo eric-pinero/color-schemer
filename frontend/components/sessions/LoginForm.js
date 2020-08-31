@@ -11,7 +11,7 @@ const LoginForm = ({setSessionModal, setCurrentUser}) => {
             stateChangeFunction(e.target.value);
         };
     }
-
+    
     const errorCheck = () =>{
         let currentErrors = [];
         
@@ -33,23 +33,19 @@ const LoginForm = ({setSessionModal, setCurrentUser}) => {
                 email: emailAddress,
                 password: password
             }
-            login(user).then((currentUser,failure) =>{
+            login(user).then((currentUser) =>{
+                console.log("success")
 
-                if (currentUser){
-                    setCurrentUser(currentUser)
-                    setEmailAddress("");
-                    setPassword("");
-                    setSessionModal(null);
-                }
-                else {
-                    console.log(failure);
-                };
-            });
+                setCurrentUser(currentUser)
+                setEmailAddress("");
+                setPassword("");
+                setSessionModal(null);
+            },  (failure) => setErrors(failure.responseJSON));
         };
     };
 
     const errorMap = errors ? errors.map(error =>(
-        <li className="padding-b-10">{error}</li> 
+        <li className="padding-b-10" key={error.length}>{error}</li> 
         ))
         : 
         null
@@ -68,14 +64,14 @@ const LoginForm = ({setSessionModal, setCurrentUser}) => {
             <header className="bg-red shadow padding-20 bold white border-rad-5">Login</header>
             <form className="flex column padding-20 align-center" onSubmit={handleSubmit}>
                 {errorList}
-                <label for="email" className="margin-b-5">Email Address</label>
+                <label htmlFor="email" className="margin-b-5">Email Address</label>
                 <input id="email" className="w-80percent margin-b-20" 
                     type="email" 
                     value={emailAddress} 
                     onChange={handleChange(setEmailAddress)}
                 />
 
-                <label for="password" className="margin-b-5">Password</label>
+                <label htmlFor="password" className="margin-b-5">Password</label>
                 <input id="password" className="w-80percent margin-b-20" 
                     type="password" 
                     value={password} 
