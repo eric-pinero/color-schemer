@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import {fetchColors} from '../../util/colorsAPIUtil'
 import SelectedColors from './SelectedColors'
-import SchemeContext from '../../contexts/SchemeContext'
 
 const ColorDropdown = ({scheme, schemeChange}) => {
     let [paints, setPaints] = useState([]);
     let [dropdownVisible, setDropdownVisible] = useState(false);
     let [searchCriteria, setSearchCriteria] = useState(null);
-    
 
-    if(paints.length === 0){
+    useEffect(()=>{
         fetchColors().then((colors, error) =>{
             if (colors) {
                 let idNum = 1;
@@ -18,12 +16,13 @@ const ColorDropdown = ({scheme, schemeChange}) => {
                     paintsArr.push(colors[idNum])
                     idNum++
                 }
-                setPaints(paintsArr)
+                console.log(colors)
             } else {
                 console.log(error)
             }
         })
-    }
+    }, [])
+    
     const sortedPaints = paints.sort((a,b) => (a.name < b.name ? -1 : 1));
 
     const paintItemBuilder = (paint) => {
@@ -83,11 +82,6 @@ const ColorDropdown = ({scheme, schemeChange}) => {
     let selectorHeight = dropdownVisible ? "vh-50percent" : "h-0"
     let colorSelector = <ul className={`bg-white overflow-scroll ${selectorHeight} border-rad-5 ease-in-h`}>{list2}</ul>
 
-    const handleChange = (selected) => {
-        const change = selected ? selected.map(selection => selection.value) : [];
-        schemeChange(change);
-    }
-
     const handleAdd = (e) => {
         if (!scheme.includes(e)){
             schemeChange(scheme.concat(e))
@@ -95,7 +89,6 @@ const ColorDropdown = ({scheme, schemeChange}) => {
     }
     return(
         <>
-        {/* <div> */}
             <SelectedColors 
                 scheme={scheme} 
                 schemeChange={schemeChange}
@@ -103,7 +96,6 @@ const ColorDropdown = ({scheme, schemeChange}) => {
                 setDropdownVisible={setDropdownVisible}
             />
             {colorSelector}
-        {/* </div> */}
         </>
     )
 }
