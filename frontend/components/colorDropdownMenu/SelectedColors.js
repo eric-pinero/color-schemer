@@ -19,32 +19,36 @@ const SelectedColors = ({scheme, schemeChange, dropdownVisible, setDropdownVisib
             }}
         />
         return(
-            <li key={paint.id} className="flex padding-10 hover-blue" onClick={()=>handleRemove(paint)}>
+            <li key={paint.id} className="flex padding-10 hover-blue pointer" onClick={()=>handleRemove(paint)}>
                 <span>{name}</span>
                 {dot}
             </li>
-        )
-        
+        ) 
     }
 
     const handleRemove = (paint) => {
         debugger
         const paintIndex = scheme.indexOf(paint);
-        const updatedScheme = scheme;
+        const updatedScheme = [...scheme];
         updatedScheme.splice(paintIndex, 1);
+        debugger
         schemeChange(updatedScheme);
     }
     
     const selectedColorsBuilder = (colors) => {
         return colors.map((color) => paintItemBuilder(color))
     }
-
+    
     const selectedColorItems = scheme.length ? selectedColorsBuilder(scheme) : null;
-
+    debugger
     let selectedColorsList = 
     <ul className="flex bg-white border-rad-5 flex-wrap" >
         {selectedColorItems}
-        <input className="outline-none border-none margin-l-10 h-25px w-80percent pointer" placeholder={placeholderText} type="text" onClick={(e) => setDropdownVisible(!dropdownVisible)}/>
+        <input 
+            className="outline-none border-none margin-l-10 h-25px w-80percent pointer" 
+            placeholder={placeholderText} type="text" 
+            onClick={(e) => setDropdownVisible(!dropdownVisible)}
+        />
     </ul>
     return(
         <>
