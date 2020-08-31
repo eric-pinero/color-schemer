@@ -5,7 +5,7 @@ import SelectedColors from './SelectedColors'
 const ColorDropdown = ({scheme, schemeChange}) => {
     let [paints, setPaints] = useState([]);
     let [dropdownVisible, setDropdownVisible] = useState(false);
-    let [searchCriteria, setSearchCriteria] = useState(null);
+    let [searchCriteria, setSearchCriteria] = useState("");
 
     useEffect(()=>{
         fetchColors().then((colors, error) =>{
@@ -16,7 +16,7 @@ const ColorDropdown = ({scheme, schemeChange}) => {
                     paintsArr.push(colors[idNum])
                     idNum++
                 }
-                console.log(colors)
+                setPaints(paintsArr)
             } else {
                 console.log(error)
             }
@@ -39,52 +39,35 @@ const ColorDropdown = ({scheme, schemeChange}) => {
                 }}
             />
         return(
-            <li key={paint.id} className="flex padding-10 hover-blue" onClick={(e)=>handleAdd(paint)} >
+            <li key={paint.id} className="flex padding-10 hover-blue" onClick={(e)=>handleAdd(e,paint)} >
                 <span>{name}</span>
                 {dot}
             </li>
         )
 
     }
-
-    const list = sortedPaints.map(
-        paint => {
-            const name = paint.name
-            const rgbString = `rgb(${paint.rgb.join(",")})`
-            const dot = <div style= {{
-                background: rgbString,
-                border: "1px solid black",
-                height: "15px",
-                width: "15px",
-                borderRadius: "15px",
-                marginLeft: "10px"
-                }}
-            />
-            return({
-                "label": 
-                    <div key={paint.id} className="flex">
-                        <span>{name}</span>
-                        {dot}
-                    </div>,
-                "value": {...paint, complement: paint.complement },
-                "key":name
-            })
-        }
-    )
-
-    const list2 = sortedPaints.map(
+    const paintSearch = searchCriteria.length ? sortedPaints.filter(paint => {
+        const lowerPaintName = paint.name.toLowerCase();
+        const lowerSearchCriteria = searchCriteria.toLowerCase();
+        return lowerPaintName.includes(lowerSearchCriteria);
+        }) 
+    : 
+        null
+    ;
+    const displayedPaints = paintSearch ? paintSearch : sortedPaints;
+    const paintItems = displayedPaints.map(
         paint => {
             const paintItem = paintItemBuilder(paint)
             return paintItem
         }
-    )
+    );
 
     let selectorHeight = dropdownVisible ? "vh-50percent" : "h-0"
-    let colorSelector = <ul className={`bg-white overflow-scroll ${selectorHeight} border-rad-5 ease-in-h`}>{list2}</ul>
+    let colorSelector = <ul className={`bg-white overflow-scroll ${selectorHeight} border-rad-5 ease-in-h`}>{paintItems}</ul>
 
-    const handleAdd = (e) => {
-        if (!scheme.includes(e)){
-            schemeChange(scheme.concat(e))
+    const handleAdd = (e, paint) => {
+        if (!scheme.includes(paint)){
+            schemeChange(scheme.concat(paint))
         }
     }
     return(
@@ -94,6 +77,8 @@ const ColorDropdown = ({scheme, schemeChange}) => {
                 schemeChange={schemeChange}
                 dropdownVisible={dropdownVisible}
                 setDropdownVisible={setDropdownVisible}
+                searchCriteria={searchCriteria}
+                setSearchCriteria={setSearchCriteria}
             />
             {colorSelector}
         </>

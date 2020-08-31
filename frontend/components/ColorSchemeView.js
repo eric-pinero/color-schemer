@@ -9,7 +9,7 @@ const ColorSchemeView = ({scheme}) => {
     let test = useContext(SchemeContext)
     let schemeView = scheme.length ?
         scheme.map(
-            paint => <SchemeSwatch className="border-1" paint={paint} scheme={scheme} key={`${Math.floor(Math.random() * 100)}`}/>
+            paint => <SchemeSwatch className="border-1" paint={paint} scheme={scheme} key={paint.id}/>
         )
        :
        null

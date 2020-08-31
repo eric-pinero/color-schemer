@@ -100,6 +100,10 @@ button{
   position: absolute;
 }
 
+.relative{
+  position: relative;
+}
+
 .top-0{
   top: 0;
 }
@@ -395,7 +399,9 @@ button{
 .margin-l-10 {
   margin-left: 10px;
 }
-
+.margin-r-10{
+  margin-right: 10px;
+}
 .margin-b-5 {
   margin-bottom: 5px;
 }
@@ -468,12 +474,17 @@ button{
 }
 
 
-/* list option */
+/* list options */
 .style-disc{
   list-style: disc;
 }
 
-/* transitions */
+/* transition options */
 .ease-in-h{
   transition: height 0.5s;
+}
+
+/* transform options  */
+.rotate-x-180:focus{
+  transform: rotateX(180deg);
 }

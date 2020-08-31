@@ -1,9 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const SelectedColors = ({scheme, schemeChange, dropdownVisible, setDropdownVisible}) =>{
-
-    
-    const placeholderText = scheme.length ? "" : "Select or Search"
+const SelectedColors = ({scheme, schemeChange, dropdownVisible, setDropdownVisible, searchCriteria, setSearchCriteria}) =>{
+    const placeholderText = "Select or Search"
 
     const paintItemBuilder = (paint) => {
         const name = paint.name
@@ -27,33 +25,37 @@ const SelectedColors = ({scheme, schemeChange, dropdownVisible, setDropdownVisib
     }
 
     const handleRemove = (paint) => {
-        debugger
         const paintIndex = scheme.indexOf(paint);
         const updatedScheme = [...scheme];
         updatedScheme.splice(paintIndex, 1);
-        debugger
         schemeChange(updatedScheme);
     }
     
     const selectedColorsBuilder = (colors) => {
         return colors.map((color) => paintItemBuilder(color))
     }
+
+    const buttonRotation = dropdownVisible ? <span>&#x25BC;</span> : <span>&#x25B2;</span>;
     
     const selectedColorItems = scheme.length ? selectedColorsBuilder(scheme) : null;
-    debugger
     let selectedColorsList = 
-    <ul className="flex bg-white border-rad-5 flex-wrap" >
+    <ul className="flex bg-white border-rad-5 w-100percent flex-wrap" >
+        <div className="flex space-between w-100percent">    
+            <input 
+                className="outline-none border-none margin-l-10 margin-r-10 h-25px w-100percent pointer" 
+                placeholder={placeholderText} type="text" 
+                onFocus={(e) => setDropdownVisible(true)}
+                onChange={(e) => setSearchCriteria(e.target.value)}
+                value={searchCriteria}
+            />
+            <button className={`relative bg-lightyellow red border-1 border-rad-5 border-red`} onClick={(e) => setDropdownVisible(!dropdownVisible)}>{buttonRotation}</button>
+        </div>
         {selectedColorItems}
-        <input 
-            className="outline-none border-none margin-l-10 h-25px w-80percent pointer" 
-            placeholder={placeholderText} type="text" 
-            onClick={(e) => setDropdownVisible(!dropdownVisible)}
-        />
     </ul>
     return(
-        <>
-        {selectedColorsList}
-        </>
+        <div className="flex w-100percent">
+            {selectedColorsList}
+        </div>
     )
 
 }
