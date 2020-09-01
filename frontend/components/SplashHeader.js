@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import paints from "../paints.json";
 import ColorList from "./ColorList";
 import About from "./About";
-import Schemes from "./Schemes"
+import Schemes from "./schemesPage/Schemes"
 import {logout} from "../util/sessionAPIUtil"
 
 const SplashHeader = ({setActiveTab, currentUser, setCurrentUser, setSessionModal}) => {
