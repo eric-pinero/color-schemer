@@ -34,6 +34,6 @@ class Api::SchemesController < ApplicationController
 
     private
     def scheme_params
-        params.require(:scheme).permit(:title, :owner_id, :swatch_obj)
+        params.require(:scheme).permit(:title, :owner_id)
     end
 end
