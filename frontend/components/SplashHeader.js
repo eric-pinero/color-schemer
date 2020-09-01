@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import paints from "../paints.json";
 import ColorList from "./ColorList";
 import About from "./About";
+import Schemes from "./Schemes"
 import {logout} from "../util/sessionAPIUtil"
 
 const SplashHeader = ({setActiveTab, currentUser, setCurrentUser, setSessionModal}) => {
@@ -43,7 +44,7 @@ const SplashHeader = ({setActiveTab, currentUser, setCurrentUser, setSessionModa
     ;
 
     const schemesLink = currentUser ?
-        <p className="link pointer bold padding-l-10" 
+        <p className="link pointer bold padding-l-10 border-r-s-1 border-white padding-r-10"  
             onClick={() => setActiveTab(<Schemes schemes={currentUser.schemes}/>)}>Schemes
         </p>
         :
@@ -91,6 +92,7 @@ const SplashHeader = ({setActiveTab, currentUser, setCurrentUser, setSessionModa
                 <p className="link pointer bold padding-l-10 border-r-s-1 border-white padding-r-10" 
                     onClick={()=> setActiveTab(<ColorList/>) }>Scheme Selector
                 </p>
+                {schemesLink}
                 {logoutLink}
                 {loginLink}
                 {signupLink}

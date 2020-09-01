@@ -50,9 +50,8 @@ const SignupForm = ({setSessionModal, setCurrentUser}) => {
                     setSecondPassword("")
                     setSessionModal(null)
                 }
-            })
-        } else{
-        }
+            }, (failure) => setErrors(failure.responseJSON))
+        } 
     }
 
     const errorMap = errors ? errors.map(error =>(
