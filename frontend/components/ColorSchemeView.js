@@ -1,5 +1,6 @@
-import React, {useState} from "react"
-import SchemeSwatch from "./SchemeSwatch"
+import React, {useState} from "react";
+import SchemeSwatch from "./SchemeSwatch";
+import {createScheme} from "../util/schemeAPIUtil";
 
 const ColorSchemeView = ({scheme}) => {
     let [schemeTitle, setSchemeTitle] = useState("Your Scheme")
@@ -10,6 +11,14 @@ const ColorSchemeView = ({scheme}) => {
        :
        null
     ;
+
+    const handleSchemeSubmit = () =>{
+        createScheme(schemeTitle).then((response) =>{
+            scheme.forEach((color)=>{
+
+            })
+        })
+    }
     
     const schemeViewStyle = scheme.length ? "border-1 border-rad-15 border-red bg-lightyellow padding-10" : "";
     return(
@@ -22,7 +31,7 @@ const ColorSchemeView = ({scheme}) => {
                 onChange={(e) => setSchemeTitle(e.target.value)}
                 value={schemeTitle}
             />
-            <button onClick={}>Submit</button>
+            <button onClick={handleSchemeSubmit}>Submit</button>
         </div>
     );
 }
