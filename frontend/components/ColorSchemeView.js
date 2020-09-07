@@ -19,7 +19,17 @@ const ColorSchemeView = ({scheme}) => {
             })
         })
     }
-    
+
+    const schemeNameField = scheme.length ?             
+        <input
+            onChange={(e) => setSchemeTitle(e.target.value)}
+            value={schemeTitle}
+        />
+        :
+        null
+    ;
+    const schemeSubmitButton = scheme.length ? <button onClick={handleSchemeSubmit}>Submit</button> : null;
+
     const schemeViewStyle = scheme.length ? "border-1 border-rad-15 border-red bg-lightyellow padding-10" : "";
     return(
         <div className="flex column w-45percent h-fit red">
@@ -27,11 +37,8 @@ const ColorSchemeView = ({scheme}) => {
             <ul className={schemeViewStyle}>
                 {schemeView}
             </ul>
-            <input
-                onChange={(e) => setSchemeTitle(e.target.value)}
-                value={schemeTitle}
-            />
-            <button onClick={handleSchemeSubmit}>Submit</button>
+            {schemeNameField}
+            {schemeSubmitButton}
         </div>
     );
 }

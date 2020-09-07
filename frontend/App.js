@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../app/assets/stylesheets/App.css'
 import '../app/assets/stylesheets/reset.css'
 import SplashHeader from './components/SplashHeader';
@@ -10,6 +10,14 @@ const App = () => {
   let [activeTab, setActiveTab] = useState(<ColorList/>);
   let [sessionModal, setSessionModal] = useState(null);
   let [currentUser, setCurrentUser] = useState(null)
+
+  useEffect(()=>{
+      if (window.currentUser){
+        setCurrentUser(window.currentUser)
+        delete window.currentUser
+      }
+    },[]
+  )
 
   let greyOut = sessionModal ?         
     <div 
