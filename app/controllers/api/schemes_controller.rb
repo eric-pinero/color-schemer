@@ -34,6 +34,7 @@ class Api::SchemesController < ApplicationController
 
     private
     def scheme_params
+        debugger
         params.require(:scheme).permit(:title, :owner_id)
     end
 end

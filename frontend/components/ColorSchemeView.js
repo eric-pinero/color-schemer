@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import SchemeSwatch from "./SchemeSwatch";
 import {createScheme} from "../util/schemeAPIUtil";
+import {createSchemeSwatch} from "../util/schemeSwatchAPIUtil"
 
 const ColorSchemeView = ({scheme}) => {
     let [schemeTitle, setSchemeTitle] = useState("Your Scheme")
@@ -13,9 +14,19 @@ const ColorSchemeView = ({scheme}) => {
     ;
 
     const handleSchemeSubmit = () =>{
-        createScheme(schemeTitle).then((response) =>{
+        debugger
+        const schemeParams = {
+            title: schemeTitle,
+            owner_id: currentUser.id
+        }
+        
+        createScheme(schemeParams).then((response) =>{
             scheme.forEach((color)=>{
-
+                const schemeSwatchParams = {
+                    color_id: color.id,
+                    scheme_id: response.id
+                }
+                createSchemeSwatch(schemeSwatchParams);
             })
         })
     }

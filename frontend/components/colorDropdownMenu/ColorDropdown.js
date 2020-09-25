@@ -8,7 +8,7 @@ const ColorDropdown = ({scheme, schemeChange}) => {
     let [searchCriteria, setSearchCriteria] = useState("");
 
     useEffect(()=>{
-        fetchColors().then((colors, error) =>{
+        fetchColors().then((colors) =>{
             if (colors) {
                 let idNum = 1;
                 const paintsArr = []
@@ -17,9 +17,7 @@ const ColorDropdown = ({scheme, schemeChange}) => {
                     idNum++
                 }
                 setPaints(paintsArr)
-            } else {
-                console.log(error)
-            }
+            } 
         })
     }, [])
     

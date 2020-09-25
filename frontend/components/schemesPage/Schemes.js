@@ -8,6 +8,7 @@ const Schemes = ({schemes}) => {
     return(
         <ul>
             <p>Your Schemes</p>
+            {schemeList}
         </ul>
     )
 }

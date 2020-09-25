@@ -1,5 +1,4 @@
 import React from 'react';
-import * as APIUtil from '../../util/sessionAPIUtil';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm'
 
