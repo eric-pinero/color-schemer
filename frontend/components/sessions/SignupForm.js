@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {signup} from '../../util/sessionAPIUtil';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-const SignupForm = ({setSessionModal, setCurrentUser}) => {
+const SignupForm = ({setSessionModal}) => {
     let [emailAddress, setEmailAddress] = useState( "" );
     let [secondEmail, setSecondEmail] = useState( "" );
     let [password, setPassword] = useState( "" );
     let [secondPassword, setSecondPassword] = useState( "" );
-    let [errors, setErrors] = useState(null)
+    let [errors, setErrors] = useState(null);
+    let [currentUser, setCurrentUser] = useContext(CurrentUserContext);
 
     const handleChange = (stateChangeFunction) =>{
         return (e) => {
@@ -40,10 +42,10 @@ const SignupForm = ({setSessionModal, setCurrentUser}) => {
                 email: emailAddress,
                 password: password
             }
-            signup(user).then((currentUser) =>{
+            signup(user).then((signedUpUser) =>{
 
-                if (currentUser){
-                    setCurrentUser(currentUser)
+                if (signedUpUser){
+                    setCurrentUser(signedUpUser)
                     setEmailAddress("")
                     setSecondEmail("")
                     setPassword("")

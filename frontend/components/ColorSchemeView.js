@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import SchemeSwatch from "./SchemeSwatch";
 import {createScheme} from "../util/schemeAPIUtil";
 import {createSchemeSwatch} from "../util/schemeSwatchAPIUtil"
+import {SchemeContext} from "../contexts/SchemeContext"
 
-const ColorSchemeView = ({scheme}) => {
-    let [schemeTitle, setSchemeTitle] = useState("Your Scheme")
+const ColorSchemeView = () => {
+    const [schemeTitle, setSchemeTitle] = useState("Your Scheme")
+    const [scheme, setScheme] = useContext(SchemeContext)
     let schemeView = scheme.length ?
         scheme.map(
             paint => <SchemeSwatch className="border-1" paint={paint} scheme={scheme} key={paint.id}/>
@@ -14,7 +16,6 @@ const ColorSchemeView = ({scheme}) => {
     ;
 
     const handleSchemeSubmit = () =>{
-        debugger
         const schemeParams = {
             title: schemeTitle,
             owner_id: currentUser.id

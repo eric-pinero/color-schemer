@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
+import {SchemeContext} from "../../contexts/SchemeContext"
 
-const SelectedColors = ({scheme, schemeChange, dropdownVisible, setDropdownVisible, searchCriteria, setSearchCriteria}) =>{
-    const placeholderText = "Select or Search"
+const SelectedColors = ({dropdownVisible, setDropdownVisible, searchCriteria, setSearchCriteria}) =>{
+    const placeholderText = "Select or Search";
+    const [scheme, setScheme] = useContext(SchemeContext);
 
     const paintItemBuilder = (paint) => {
         const name = paint.name
@@ -28,7 +30,7 @@ const SelectedColors = ({scheme, schemeChange, dropdownVisible, setDropdownVisib
         const paintIndex = scheme.indexOf(paint);
         const updatedScheme = [...scheme];
         updatedScheme.splice(paintIndex, 1);
-        schemeChange(updatedScheme);
+        setScheme(updatedScheme);
     }
     
     const selectedColorsBuilder = (colors) => {

@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import '../app/assets/stylesheets/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { CurrentUserProvider } from './contexts/CurrentUserContext';
+
 document.addEventListener('DOMContentLoaded', () =>{
   ReactDOM.render(
     <React.StrictMode>
-      <App/>
+      <CurrentUserProvider>
+        <App/>
+      </CurrentUserProvider>
     </React.StrictMode>,
     document.getElementById('root')
   );

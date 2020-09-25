@@ -1,15 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import '../app/assets/stylesheets/App.css'
 import '../app/assets/stylesheets/reset.css'
 import SplashHeader from './components/SplashHeader';
 import ColorList from './components/ColorList'
 import SessionModal from './components/sessions/SessionModal'
 import Footer from './components/Footer';
+import { SchemeProvider } from './contexts/SchemeContext';
+import { CurrentUserContext } from './contexts/CurrentUserContext'
 
 const App = () => {  
   let [activeTab, setActiveTab] = useState(<ColorList/>);
   let [sessionModal, setSessionModal] = useState(null);
-  let [currentUser, setCurrentUser] = useState(null)
+  let [currentUser, setCurrentUser] = useContext(CurrentUserContext)
 
   useEffect(()=>{
       if (window.currentUser){
@@ -29,18 +31,21 @@ const App = () => {
 
   
   const modal = sessionModal ?
-    <SessionModal sessionModal={sessionModal} setSessionModal={setSessionModal} setCurrentUser={setCurrentUser}/> 
+    <SessionModal sessionModal={sessionModal} setSessionModal={setSessionModal}/> 
     : 
     null
   ;
   
   return (
     <div className="App">
-      <div className="min-h-80percent h-fit bg-yellow">
-        <SplashHeader setActiveTab={setActiveTab} setSessionModal={setSessionModal} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
-        {activeTab}
-        <Footer/>
-      </div>
+
+        <div className="min-h-80percent h-fit bg-yellow">
+          <SplashHeader setActiveTab={setActiveTab} setSessionModal={setSessionModal}/>
+          <SchemeProvider>
+            {activeTab}
+          </SchemeProvider>
+          <Footer/>
+        </div>
       {greyOut}
       {modal}
     </div>

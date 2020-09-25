@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import {fetchColors} from '../../util/colorsAPIUtil'
 import SelectedColors from './SelectedColors'
+import {SchemeContext} from '../../contexts/SchemeContext'
 
-const ColorDropdown = ({scheme, schemeChange}) => {
-    let [paints, setPaints] = useState([]);
-    let [dropdownVisible, setDropdownVisible] = useState(false);
-    let [searchCriteria, setSearchCriteria] = useState("");
+const ColorDropdown = () => {
+    const [paints, setPaints] = useState([]);
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [searchCriteria, setSearchCriteria] = useState("");
+    const [scheme, setScheme] = useContext(SchemeContext)
 
     useEffect(()=>{
         fetchColors().then((colors) =>{
@@ -65,14 +67,12 @@ const ColorDropdown = ({scheme, schemeChange}) => {
 
     const handleAdd = (e, paint) => {
         if (!scheme.includes(paint)){
-            schemeChange(scheme.concat(paint))
+            setScheme(scheme.concat(paint))
         }
     }
     return(
         <>
             <SelectedColors 
-                scheme={scheme} 
-                schemeChange={schemeChange}
                 dropdownVisible={dropdownVisible}
                 setDropdownVisible={setDropdownVisible}
                 searchCriteria={searchCriteria}
