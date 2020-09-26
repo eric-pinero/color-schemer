@@ -1,1 +1,1 @@
-partial.extract!  scheme, :id, :swatch_obj, :title, :owner_id
+json.extract!  scheme, :id, :swatch_obj, :title, :owner_id

@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm'
-import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 
 const SessionModal = ({sessionModal, setSessionModal} ) => {
     
     const displayedForm = sessionModal === 'signup' ? 
-        <SignupForm setSessionModal={setSessionModal} setCurrentUser={setCurrentUser}/> 
+        <SignupForm setSessionModal={setSessionModal}/> 
         : 
-        <LoginForm setSessionModal={setSessionModal} setCurrentUser={setCurrentUser}/>
+        <LoginForm setSessionModal={setSessionModal}/>
     ;
 
     return(

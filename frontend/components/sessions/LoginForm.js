@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {login} from '../../util/sessionAPIUtil';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 
-const LoginForm = ({setSessionModal, setCurrentUser}) => {
-    let [emailAddress, setEmailAddress] = useState( "" );
-    let [password, setPassword] = useState( "" );
-    let [errors, setErrors] = useState([])
+const LoginForm = ({setSessionModal}) => {
+    const [emailAddress, setEmailAddress] = useState( "" );
+    const [password, setPassword] = useState( "" );
+    const [errors, setErrors] = useState([])
+    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
 
     const handleChange = (stateChangeFunction) =>{
         return (e) => {
@@ -33,10 +35,9 @@ const LoginForm = ({setSessionModal, setCurrentUser}) => {
                 email: emailAddress,
                 password: password
             }
-            login(user).then((currentUser) =>{
-                console.log("success")
+            login(user).then((loggedInUser) =>{
 
-                setCurrentUser(currentUser)
+                setCurrentUser(loggedInUser)
                 setEmailAddress("");
                 setPassword("");
                 setSessionModal(null);

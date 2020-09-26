@@ -1,15 +1,18 @@
-import React, {useState, useContext} from "react";
-import SchemeSwatch from "./SchemeSwatch";
-import {createScheme} from "../util/schemeAPIUtil";
-import {createSchemeSwatch} from "../util/schemeSwatchAPIUtil"
-import {SchemeContext} from "../contexts/SchemeContext"
+import React, {useState, useContext} from 'react';
+import SchemeSwatch from './SchemeSwatch';
+import { createScheme } from '../util/schemeAPIUtil';
+import { createSchemeSwatch } from '../util/schemeSwatchAPIUtil'
+import { SchemeContext } from '../contexts/SchemeContext'
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 const ColorSchemeView = () => {
-    const [schemeTitle, setSchemeTitle] = useState("Your Scheme")
-    const [scheme, setScheme] = useContext(SchemeContext)
+    const [schemeTitle, setSchemeTitle] = useState('Your Scheme');
+    const [scheme, setScheme] = useContext(SchemeContext);
+    const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+
     let schemeView = scheme.length ?
         scheme.map(
-            paint => <SchemeSwatch className="border-1" paint={paint} scheme={scheme} key={paint.id}/>
+            paint => <SchemeSwatch className='border-1' paint={paint} scheme={scheme} key={paint.id}/>
         )
        :
        null
@@ -25,7 +28,7 @@ const ColorSchemeView = () => {
             scheme.forEach((color)=>{
                 const schemeSwatchParams = {
                     color_id: color.id,
-                    scheme_id: response.id
+                    scheme_id: response.scheme.id
                 }
                 createSchemeSwatch(schemeSwatchParams);
             })

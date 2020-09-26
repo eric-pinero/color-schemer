@@ -1,7 +1,7 @@
 class Api::SchemeSwatchesController < ApplicationController
     def create
-        @scheme_swatch = Scheme_swatch.new(scheme_swatch_params)
-        if @scheme_swatch.save
+        @scheme_swatch = SchemeSwatch.new(scheme_swatch_params)
+        if @scheme_swatch.save!
             render :show
         else
             render json: @scheme_swatch.errors.full_messages, status: 422
@@ -9,7 +9,7 @@ class Api::SchemeSwatchesController < ApplicationController
     end
 
     def destroy
-        @scheme_swatch = Scheme_swatch.find(params[:id])
+        @scheme_swatch = SchemeSwatch.find(params[:id])
         if @scheme_swatch.destroy
             render :remove
         else
@@ -20,6 +20,6 @@ class Api::SchemeSwatchesController < ApplicationController
 
     private
     def scheme_swatch_params
-        params.require(:scheme_swatch).permit(:color_id, :scheme_id)
+        params.require(:schemeSwatch).permit(:color_id, :scheme_id)
     end
 end

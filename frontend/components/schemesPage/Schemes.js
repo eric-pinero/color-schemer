@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CurrentUserContext} from '../../contexts/CurrentUserContext'
 
-
-const Schemes = ({schemes}) => {
-
-    const schemeList  = schemes.map
+const Schemes = () => {
+    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
+    const schemes = currentUser.schemes
+    debugger
+    const schemeList  = "test"
 
     return(
         <ul>
