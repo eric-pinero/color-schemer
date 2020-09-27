@@ -1,7 +1,8 @@
 class Api::SchemesController < ApplicationController
     def create
         @scheme = Scheme.new(scheme_params)
-        if @scheme.save
+        # debugger
+        if @scheme.save!
             render :show
         else
             render json: @scheme.errors.full_messages, status: 422

@@ -3,7 +3,7 @@ import React from 'react';
 const SchemeIndexItem = (scheme) => {
 
     return(
-        <h2>{scheme.title}</h2>
+        <li>{scheme.title}</li>
     )
 };
 

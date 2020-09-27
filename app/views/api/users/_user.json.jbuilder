@@ -1,1 +1,1 @@
-json.extract! user, :id, :email; :schemes
+json.extract! user, :id, :email, :schemes

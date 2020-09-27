@@ -12,3 +12,10 @@ export const deleteScheme = (schemeId) => (
         method: 'DELETE',
     })
 )
+
+export const fetchScheme = (schemeId) => (
+    $.ajax({
+        url: `api/schemes/${schemeId}`,
+        method: 'GET',
+    })
+)

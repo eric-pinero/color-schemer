@@ -20,7 +20,6 @@ const App = () => {
       }
     },[]
   )
-
   let greyOut = sessionModal ?         
     <div 
       className= "absolute top-0 left-0 w-100percent h-107percent z-1 opacity-50 bg-black" 

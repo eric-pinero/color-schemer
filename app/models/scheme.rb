@@ -3,6 +3,11 @@ class Scheme < ApplicationRecord
 
     has_many :scheme_swatches
 
+    belongs_to :user,
+    primary_key: :id,
+    foreign_key: :owner_id,
+    class_name: :User
+
     def swatch_obj
         swatch_obj = {}
 

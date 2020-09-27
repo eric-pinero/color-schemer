@@ -1,17 +1,23 @@
 import React, { useContext } from 'react';
-import { CurrentUserContext} from '../../contexts/CurrentUserContext'
+import { CurrentUserContext} from '../../contexts/CurrentUserContext';
+import SchemeIndexItem from './schemeIndexItem';
 
 const Schemes = () => {
-    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
-    const schemes = currentUser.schemes
-    debugger
-    const schemeList  = "test"
+    const [currentUser] = useContext(CurrentUserContext)
+    const schemes = currentUser.schemes.length ? currentUser.schemes : [];
+    const schemeList = schemes.map(scheme =>{
+        return(
+            <SchemeIndexItem/>
+        )
+    });
 
     return(
-        <ul>
-            <p>Your Schemes</p>
-            {schemeList}
-        </ul>
+        <div>
+            <h2>Your Schemes</h2>
+            <ul>
+                {schemeList}
+            </ul>
+        </div>
     )
 }
 

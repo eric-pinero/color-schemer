@@ -1,14 +1,16 @@
 import React, {useState, useContext} from 'react';
 import SchemeSwatch from './SchemeSwatch';
-import { createScheme } from '../util/schemeAPIUtil';
+import { fetchUser } from '../util/userAPIUtil'
+import { createScheme, fetchScheme } from '../util/schemeAPIUtil';
 import { createSchemeSwatch } from '../util/schemeSwatchAPIUtil'
 import { SchemeContext } from '../contexts/SchemeContext'
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 const ColorSchemeView = () => {
-    const [schemeTitle, setSchemeTitle] = useState('Your Scheme');
+    const [schemeTitle, setSchemeTitle] = useState('');
     const [scheme, setScheme] = useContext(SchemeContext);
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+    let schemeSaved = null;
 
     let schemeView = scheme.length ?
         scheme.map(
@@ -33,27 +35,35 @@ const ColorSchemeView = () => {
                 createSchemeSwatch(schemeSwatchParams);
             })
         })
+        setSchemeTitle('');
+        setScheme([])
+        schemeSaved = 'Scheme successfully saved!'
+        fetchUser(currentUser.id).then((response => (
+            setCurrentUser(response)
+        )))
     }
 
     const schemeNameField = scheme.length ?             
         <input
             onChange={(e) => setSchemeTitle(e.target.value)}
             value={schemeTitle}
+            placeholder='Your Scheme Name'
         />
         :
         null
     ;
     const schemeSubmitButton = scheme.length ? <button onClick={handleSchemeSubmit}>Submit</button> : null;
 
-    const schemeViewStyle = scheme.length ? "border-1 border-rad-15 border-red bg-lightyellow padding-10" : "";
+    const schemeViewStyle = scheme.length ? 'border-1 border-rad-15 border-red bg-lightyellow padding-10' : '';
     return(
-        <div className="flex column w-45percent h-fit red">
-            <h2 className="f-20 padding-10">{schemeTitle}</h2>
+        <div className='flex column w-45percent h-fit red'>
+            <h2 className='f-20 padding-10'>{schemeTitle}</h2>
             <ul className={schemeViewStyle}>
                 {schemeView}
             </ul>
             {schemeNameField}
             {schemeSubmitButton}
+            {schemeSaved}
         </div>
     );
 }
