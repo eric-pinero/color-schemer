@@ -26,8 +26,8 @@ const ColorDropdown = () => {
     const sortedPaints = paints.sort((a,b) => (a.name < b.name ? -1 : 1));
 
     const paintItemBuilder = (paint) => {
-        const name = paint.name
-        const rgbString = `rgb(${paint.rgb.join(",")})`
+        const name = paint.name;
+        const rgbString = `rgb(${paint.rgb.join(",")})`;
         const dot = 
             <div style= {{
                 background: rgbString,

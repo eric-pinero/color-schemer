@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   ReactDOM.render(
     <React.StrictMode>
       <CurrentUserProvider>
-        <App/>
+          <App/>
       </CurrentUserProvider>
     </React.StrictMode>,
     document.getElementById('root')

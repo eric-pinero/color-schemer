@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom'
 import paints from '../paints.json';
 import ColorList from './ColorList';
 import About from './About';
@@ -88,9 +89,12 @@ const SplashHeader = ({setActiveTab, setSessionModal}) => {
                 </button>
             </div>
             <div className='flex justify-center white margin-bottom-10 default-margin f-20'>
-                <p className='link pointer bold border-r-s-1 border-white padding-r-10' 
-                    onClick={()=> setActiveTab(<About/>) }>About
-                </p>
+                <Link to='/about'>
+                    <p className='link pointer bold border-r-s-1 border-white padding-r-10' 
+                        // onClick={()=> setActiveTab(<About/>) }
+                        >About
+                    </p>
+                </Link>
                 <p className='link pointer bold padding-l-10 border-r-s-1 border-white padding-r-10' 
                     onClick={()=> setActiveTab(<ColorList/>) }>Scheme Selector
                 </p>
