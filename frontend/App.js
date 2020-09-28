@@ -1,19 +1,19 @@
 import React, {useState, useEffect, useContext} from 'react';
 
-import { Switch, Route } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import '../app/assets/stylesheets/App.css'
 import '../app/assets/stylesheets/reset.css'
 import SplashHeader from './components/SplashHeader';
-import ColorList from './components/ColorList'
+import SchemeSelector from './components/SchemeSelector'
 import About from './components/About'
 import SessionModal from './components/sessions/SessionModal'
+import Schemes from './components/schemesPage/Schemes'
+import SchemeShow from './components/schemesPage/ShowScheme';
 import Footer from './components/Footer';
 import { SchemeProvider } from './contexts/SchemeContext';
 import { CurrentUserContext } from './contexts/CurrentUserContext'
 
 const App = () => {  
-  let [activeTab, setActiveTab] = useState(<ColorList/>);
   let [sessionModal, setSessionModal] = useState(null);
   let [currentUser, setCurrentUser] = useContext(CurrentUserContext)
 
@@ -42,11 +42,14 @@ const App = () => {
     <div className="App">
       <Router>
         <div className="min-h-80percent h-fit bg-yellow">
-          <SplashHeader setActiveTab={setActiveTab} setSessionModal={setSessionModal}/>
+          <SplashHeader setSessionModal={setSessionModal}/>
           <SchemeProvider>
             <Switch>
               <Route exact path="/about" component={About}/>
-              <Route path="/" component={ColorList}/>
+              <Route exact path="/scheme_selector" component={SchemeSelector}/>
+              <Route exact path="/:userId/schemes" component={Schemes}/>
+              <Route exact path="/:userId/scheme/:schemeId" component={SchemeShow}/>
+              <Route path="/" component={DefaultPage}/>
                 {/* {activeTab} */}
             </Switch>
           </SchemeProvider>
@@ -58,5 +61,7 @@ const App = () => {
     </div>
   );
 };
+
+const DefaultPage = () => <Redirect to="/scheme_selector"/>
 
 export default App;

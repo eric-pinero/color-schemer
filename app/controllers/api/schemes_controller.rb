@@ -1,7 +1,16 @@
 class Api::SchemesController < ApplicationController
+
+    def index
+        if params[:userId]
+            @schemes = Scheme.id_search(params[:userId])
+            render :index
+        end
+    end
+
+
     def create
         @scheme = Scheme.new(scheme_params)
-\        if @scheme.save!
+        if @scheme.save!
             render :show
         else
             render json: @scheme.errors.full_messages, status: 422

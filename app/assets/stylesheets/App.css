@@ -3,6 +3,11 @@ a {
   transition: color 125ms;
 }
 
+Link {
+  text-decoration: none;
+  transition: color 125ms;
+}
+
 a:hover{
   color: red;
 }

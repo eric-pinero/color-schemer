@@ -13,9 +13,10 @@ export const deleteScheme = (schemeId) => (
     })
 )
 
-export const fetchScheme = (schemeId) => (
+export const fetchUserSchemes = (userId) => (
     $.ajax({
-        url: `api/schemes/${schemeId}`,
+        url: `api/schemes`,
         method: 'GET',
+        data: {userId}
     })
 )

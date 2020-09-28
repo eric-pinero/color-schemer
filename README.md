@@ -97,7 +97,7 @@ A React-Select dropdown menu was populated with The Army Painter acryllic paints
 By connecting the user's color scheme to a useState hook and passing the state manipulation function (schemeChange) to the ColorDropdown component and the state (scheme) to the SchemeView component, the color scheme is rendered with each selection. Furthermore, selections can be removed from any part of the scheme with the remaining choices' relative order being preserved.
 
 ```JavaScript
-const ColorList = () => {
+const SchemeSelector = () => {
     let [scheme, schemeChange] = useState([]);
     
     return(

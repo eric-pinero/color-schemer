@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_08_16_165554) do
     t.integer "red", null: false
     t.integer "green", null: false
     t.integer "blue", null: false
-    t.integer "complement_id", null: false
+  t.integer "complement_id", null: false
     t.index ["complement_id"], name: "index_colors_on_complement_id"
   end
 

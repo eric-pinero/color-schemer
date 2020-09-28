@@ -1,13 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom'
 import paints from '../paints.json';
-import ColorList from './ColorList';
-import About from './About';
 import Schemes from './schemesPage/Schemes'
 import { logout } from '../util/sessionAPIUtil'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
-const SplashHeader = ({setActiveTab, setSessionModal}) => {
+const SplashHeader = ({ setSessionModal }) => {
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
     let colorsObj = {};
   
@@ -47,15 +45,17 @@ const SplashHeader = ({setActiveTab, setSessionModal}) => {
     ;
 
     const schemesLink = currentUser ?
-        <p className='link pointer bold padding-l-10 border-r-s-1 border-white padding-r-10'  
-            onClick={() => setActiveTab(<Schemes/>)}>Schemes
-        </p>
+        <Link to={`${currentUser.id}/schemes`}>
+            <p className='link pointer bold padding-l-10 border-r-s-1 white border-white padding-r-10'>
+                Schemes
+            </p>
+        </Link>
         :
         null
     ;   
 
     const logoutLink = currentUser ?
-        <p className='link pointer bold padding-l-10' 
+        <p className='white link pointer bold padding-l-10' 
             onClick={() => handleLogout()}>Logout
         </p>
         :
@@ -88,16 +88,17 @@ const SplashHeader = ({setActiveTab, setSessionModal}) => {
                     {colorName}
                 </button>
             </div>
-            <div className='flex justify-center white margin-bottom-10 default-margin f-20'>
+            <div className='flex justify-center margin-bottom-10 default-margin f-20'>
                 <Link to='/about'>
-                    <p className='link pointer bold border-r-s-1 border-white padding-r-10' 
-                        // onClick={()=> setActiveTab(<About/>) }
-                        >About
+                    <p className='white link pointer bold border-r-s-1 border-white padding-r-10' >
+                        About
                     </p>
                 </Link>
-                <p className='link pointer bold padding-l-10 border-r-s-1 border-white padding-r-10' 
-                    onClick={()=> setActiveTab(<ColorList/>) }>Scheme Selector
-                </p>
+                <Link to='/scheme_selector'>
+                    <p className='white link pointer bold padding-l-10 border-r-s-1 border-white padding-r-10'>
+                        Scheme Selector
+                    </p>
+                </Link>
                 {schemesLink}
                 {logoutLink}
                 {loginLink}

@@ -7,7 +7,7 @@ class Scheme < ApplicationRecord
     primary_key: :id,
     foreign_key: :owner_id,
     class_name: :User
-
+    debugger
     def swatch_obj
         swatch_obj = {}
 
@@ -20,4 +20,11 @@ class Scheme < ApplicationRecord
         swatch_obj
     end
 
+
+    def self.id_search(id)
+        str = "%#{id}%"
+        @schemes = Scheme.where(
+            "owner_id = :query", query: str
+        )
+    end
 end

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ColorSchemeView from './ColorSchemeView'
 import ColorDropdown from './colorDropdownMenu/ColorDropdown'
 
-const ColorList = () => {
+const SchemeSelector = () => {
     let [scheme, schemeChange] = useState([]);
     
     return(
@@ -16,4 +16,4 @@ const ColorList = () => {
     )
 }
 
-export default ColorList
+export default SchemeSelector

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :create, :show]
     resource :session, only: [:create, :destroy]
     resources :colors, only: [:index]
-    resources :schemes, only: [:create, :show, :update, :destroy]
+    resources :schemes, only: [:create, :show, :update, :destroy, :index]
     resources :scheme_swatches, only: [:create, :show, :update, :destroy]
   end
   get '*path', to: 'static_pages#root'
