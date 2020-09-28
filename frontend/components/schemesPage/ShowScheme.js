@@ -3,6 +3,8 @@ import { UserSchemesContext} from '../../contexts/UserSchemesContext';
 import { CurrentUserContext} from '../../contexts/CurrentUserContext';
 import correctUserCheck from '../../functions/correctUserCheck';
 import SchemeSwatch from '../SchemeSwatch';
+import ColorSchemeView from '../ColorSchemeView'
+import { Redirect } from 'react-router-dom';
 
 const ShowScheme = ({match}) =>{
     const [currentUser] = useContext(CurrentUserContext)
@@ -14,14 +16,15 @@ const ShowScheme = ({match}) =>{
 
     },[])
     const scheme = userSchemes[schemeId]
-    const swatches = scheme.scheme_swatches.map((swatch) =>{
-        return <SchemeSwatch/>
-    })
+    if(!scheme) return <Redirect to={`/`}/>
+    // const swatches = scheme.scheme_swatches.map((swatch) =>{
+    //     return <SchemeSwatch paintId={swatch.color_id}/>
+    // })
     return (
-        <>
-        <h1>Scheme Show</h1>
-        <p>{scheme.scheme_swatches}</p>
-        </>
+        <div className='flex column txt-left margin-default w-80percent 
+         bg-lightyellow align-center padding-10 line-h-1pt5 min-h-80vh h-fit'>
+            <ColorSchemeView title= {scheme.title} swatches={scheme.scheme_swatches}/>
+        </div>
     )
 }
 

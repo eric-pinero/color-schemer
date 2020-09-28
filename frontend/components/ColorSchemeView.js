@@ -1,17 +1,37 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import SchemeSwatch from './SchemeSwatch';
 import { fetchUser } from '../util/userAPIUtil'
 import { createScheme, fetchScheme } from '../util/schemeAPIUtil';
 import { createSchemeSwatch } from '../util/schemeSwatchAPIUtil'
 import { SchemeContext } from '../contexts/SchemeContext'
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { ColorsContext } from '../contexts/ColorsContext';
 
-const ColorSchemeView = () => {
-    const [schemeTitle, setSchemeTitle] = useState('');
+
+const ColorSchemeView = ({title, swatches}) => {
+    const startingTitle = title ? title : '';
+    const [schemeTitle, setSchemeTitle] = useState(startingTitle);
     const [scheme, setScheme] = useContext(SchemeContext);
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+    const [colors] = useContext(ColorsContext);
     let schemeSaved = null;
-    debugger
+
+    function updateExistingSwatches(){
+        let swatchColors;
+        if (swatches){
+        swatchColors = swatches.map(swatch => (
+            colors[swatch.color_id]
+        ))} else if(swatches === null){
+            swatchColors = []
+        }
+        setScheme(swatchColors)
+    }
+
+    useEffect(()=>
+        updateExistingSwatches()
+    ,[swatches])
+
+
     let schemeView = scheme.length ?
         scheme.map(
             paint => <SchemeSwatch className='border-1' paintId={paint.id} key={paint.id}/>
@@ -43,6 +63,8 @@ const ColorSchemeView = () => {
         )))
     }
 
+    const schemeCreateArea = swatches ? [schemeNameField, schemeSubmitButton] : null;
+
     const schemeNameField = scheme.length ?             
         <input
             onChange={(e) => setSchemeTitle(e.target.value)}
@@ -52,17 +74,19 @@ const ColorSchemeView = () => {
         :
         null
     ;
+
     const schemeSubmitButton = scheme.length ? <button onClick={handleSchemeSubmit}>Submit</button> : null;
 
     const schemeViewStyle = scheme.length ? 'border-1 border-rad-15 border-red bg-lightyellow padding-10' : '';
+
+    debugger
     return(
         <div className='flex column w-45percent h-fit red'>
             <h2 className='f-20 padding-10'>{schemeTitle}</h2>
             <ul className={schemeViewStyle}>
                 {schemeView}
             </ul>
-            {schemeNameField}
-            {schemeSubmitButton}
+            {schemeCreateArea}
             {schemeSaved}
         </div>
     );
