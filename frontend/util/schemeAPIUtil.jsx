@@ -8,15 +8,15 @@ export const createScheme = (scheme) => (
 
 export const deleteScheme = (schemeId) => (
     $.ajax({
-        url: `api/schemes/${schemeId}`,
+        url: `/api/schemes/${schemeId}`,
         method: 'DELETE',
     })
 )
 
-export const fetchUserSchemes = (userId) => (
-    $.ajax({
-        url: `api/schemes`,
+export const fetchUserSchemes = (userId) => {
+    return $.ajax({
+        url: `/api/schemes`,
         method: 'GET',
-        data: {userId}
+        data: { userId }
     })
-)
+}

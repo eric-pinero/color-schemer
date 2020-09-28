@@ -11,10 +11,10 @@ const ColorSchemeView = () => {
     const [scheme, setScheme] = useContext(SchemeContext);
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
     let schemeSaved = null;
-
+    debugger
     let schemeView = scheme.length ?
         scheme.map(
-            paint => <SchemeSwatch className='border-1' paint={paint} scheme={scheme} key={paint.id}/>
+            paint => <SchemeSwatch className='border-1' paintId={paint.id} key={paint.id}/>
         )
        :
        null

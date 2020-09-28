@@ -1,7 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
+import { ColorsContext } from '../contexts/ColorsContext'
 
-const SchemeSwatch = ({paint}) => {
+const SchemeSwatch = ({paintId}) => {
+    const [colors] = useContext(ColorsContext)
     const complement = paint.complement
+    const paint = colors[paintId];
+
+    debugger
     return(
         <li className="flex align-center justify-center w-100percent margin-b-10">
             <p className="w-200 margin-5">Color: <br/> {paint.name}</p>

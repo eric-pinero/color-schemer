@@ -11,7 +11,9 @@ import Schemes from './components/schemesPage/Schemes'
 import SchemeShow from './components/schemesPage/ShowScheme';
 import Footer from './components/Footer';
 import { SchemeProvider } from './contexts/SchemeContext';
+import { UserSchemesProvider } from './contexts/UserSchemesContext'
 import { CurrentUserContext } from './contexts/CurrentUserContext'
+import { ColorsContextProvider } from './contexts/ColorsContext';
 
 const App = () => {  
   let [sessionModal, setSessionModal] = useState(null);
@@ -44,6 +46,8 @@ const App = () => {
         <div className="min-h-80percent h-fit bg-yellow">
           <SplashHeader setSessionModal={setSessionModal}/>
           <SchemeProvider>
+          <UserSchemesProvider>
+          <ColorsContextProvider>
             <Switch>
               <Route exact path="/about" component={About}/>
               <Route exact path="/scheme_selector" component={SchemeSelector}/>
@@ -52,6 +56,8 @@ const App = () => {
               <Route path="/" component={DefaultPage}/>
                 {/* {activeTab} */}
             </Switch>
+          </ColorsContextProvider>
+          </UserSchemesProvider>
           </SchemeProvider>
           <Footer/>
         </div>

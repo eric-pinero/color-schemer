@@ -1,29 +1,28 @@
 import React, { useEffect, useState, useContext } from 'react'
-import {fetchColors} from '../../util/colorsAPIUtil'
 import SelectedColors from './SelectedColors'
-import {SchemeContext} from '../../contexts/SchemeContext'
+import { SchemeContext } from '../../contexts/SchemeContext'
+import { ColorsContext } from '../../contexts/ColorsContext'
 
 const ColorDropdown = () => {
-    const [paints, setPaints] = useState([]);
+    const [colors] = useContext(ColorsContext)
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [searchCriteria, setSearchCriteria] = useState("");
     const [scheme, setScheme] = useContext(SchemeContext)
 
-    useEffect(()=>{
-        fetchColors().then((colors) =>{
-            if (colors) {
-                let idNum = 1;
-                const paintsArr = []
-                while (colors[idNum]){
-                    paintsArr.push(colors[idNum])
-                    idNum++
-                }
-                setPaints(paintsArr)
-            } 
-        })
-    }, [])
-    
-    const sortedPaints = paints.sort((a,b) => (a.name < b.name ? -1 : 1));
+
+    const colorsArr = colors ? buildColorArr(colors) : [];
+
+
+    function buildColorArr(colorObj){
+        const builtArr = [];
+        let idNum = 1;
+        while (colorObj[idNum]){
+            builtArr.push(colorObj[idNum])
+            idNum++
+        }
+        builtArr.sort((a,b) => (a.name < b.name ? -1 : 1));
+        return builtArr
+    }
 
     const paintItemBuilder = (paint) => {
         const name = paint.name;
@@ -46,7 +45,7 @@ const ColorDropdown = () => {
         )
 
     }
-    const paintSearch = searchCriteria.length ? sortedPaints.filter(paint => {
+    const paintSearch = searchCriteria.length ? colorsArr.filter(paint => {
         const lowerPaintName = paint.name.toLowerCase();
         const lowerSearchCriteria = searchCriteria.toLowerCase();
         return lowerPaintName.includes(lowerSearchCriteria);
@@ -54,7 +53,7 @@ const ColorDropdown = () => {
     : 
         null
     ;
-    const displayedPaints = paintSearch ? paintSearch : sortedPaints;
+    const displayedPaints = paintSearch ? paintSearch : colorsArr;
     const paintItems = displayedPaints.map(
         paint => {
             const paintItem = paintItemBuilder(paint)
