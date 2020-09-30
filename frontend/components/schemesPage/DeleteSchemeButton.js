@@ -7,13 +7,10 @@ const DeleteSchemeButton = ({ schemeId }) => {
     const [userSchemes, setUserSchemes] = useContext(UserSchemesContext)
 
     const handleDelete = () => {
-        debugger
         deleteScheme(schemeId).then((response) => {
-            debugger
-            let currentSchemes = userSchemes;
+            let currentSchemes = {...userSchemes};
             delete currentSchemes[response.id]
             setUserSchemes(currentSchemes)
-            debugger
         })
     }
     const deleteButton = deleteConfirmed ? 

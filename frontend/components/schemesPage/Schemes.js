@@ -25,7 +25,6 @@ const Schemes = ({match}) => {
     }
 
     useEffect(()=>{
-        debugger
     }, [userSchemes])
 
 
