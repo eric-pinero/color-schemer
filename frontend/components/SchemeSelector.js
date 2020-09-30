@@ -3,7 +3,6 @@ import ColorSchemeView from './ColorSchemeView'
 import ColorDropdown from './colorDropdownMenu/ColorDropdown'
 
 const SchemeSelector = () => {
-    debugger
     return(
         <div className="flex justify-center space-between w-80percent margin-default padding-b-20 min-h-80vh h-fit">
             <div className="flex column w-45percent margin-5">

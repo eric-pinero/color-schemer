@@ -366,6 +366,10 @@ button{
   padding: 10%
 }
 
+.padding-t-10{
+  padding-top: 10px;
+}
+
 .padding-r-10{
   padding-right: 10px;
 }

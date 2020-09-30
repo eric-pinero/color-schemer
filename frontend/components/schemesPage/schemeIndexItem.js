@@ -5,7 +5,9 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 const SchemeIndexItem = ({scheme, match}) => {
     const schemeOwnerId = match.params.userId;
     return(
-        <Link to={`/${schemeOwnerId}/scheme/${scheme.id}`} className='link white'>{scheme.title}</Link>
+        <Link to={`/${schemeOwnerId}/scheme/${scheme.id}`} 
+            className='link red bold'>{scheme.title}
+        </Link>
     )
 };
 

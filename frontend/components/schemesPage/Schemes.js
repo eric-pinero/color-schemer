@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useLocation, Redirect } from 'react-router-dom'; 
+import React, { useContext, useEffect, useState } from 'react';
 import { CurrentUserContext} from '../../contexts/CurrentUserContext';
 import { UserSchemesContext } from '../../contexts/UserSchemesContext'
 import SchemeIndexItem from './SchemeIndexItem';
-import { fetchUserSchemes } from '../../util/schemeAPIUtil'
-import correctUserCheck from '../../functions/correctUserCheck'
+import { fetchUserSchemes } from '../../util/schemeAPIUtil';
+import correctUserCheck from '../../functions/correctUserCheck';
+import DeleteSchemeButton from './DeleteSchemeButton';
 
 const Schemes = ({match}) => {
     const [currentUser] = useContext(CurrentUserContext)
@@ -18,37 +18,42 @@ const Schemes = ({match}) => {
 
     function retrieveSchemes(){
         if(currentUser) {
-            // setUserSchemes(currentUser.schemes)
             fetchUserSchemes(currentUser.id).then((response)=> {
                 setUserSchemes(response);
             })    
         }
     }
 
+    useEffect(()=>{
+        debugger
+    }, [userSchemes])
+
+
     useEffect(() => {
         retrieveSchemes();
     }, [currentUser])
 
-    const makeSchemeList = (schemeObj) => {
+    function makeSchemeList(schemes) {
         const schemeListItems = []
-        for(const schemeId in schemeObj){
-            const scheme = schemeObj[schemeId]
-            schemeListItems.push( <li key={schemeId}><SchemeIndexItem match={match} scheme={scheme}/></li>)
+        for(const schemeId in schemes){
+            schemeListItems.push(
+                <li key={schemeId}>
+                    <SchemeIndexItem match={match} scheme={schemes[schemeId]}/>
+                    <DeleteSchemeButton schemeId={schemeId}/>
+                </li>
+            )
         }
         return schemeListItems
     }
 
-    // const schemeList = for (const scheme in userSchemes){scheme =>{
-    //     return(
-    //         <li key={scheme.id}><SchemeIndexItem match={match} title={scheme.title}/></li>
-    //     )
-    // }};
 
     return(
         <div className='flex column txt-left margin-default w-80percent 
          bg-lightyellow align-center padding-10 line-h-1pt5 min-h-80vh h-fit'>
-            <h2>Your Schemes</h2>
-            <ul>
+            <h2 className='red bold f-30 txt-center border-b-s-1 border-red w-80percent'>
+                Your Schemes
+            </h2>
+            <ul className='padding-t-10'>
                 {makeSchemeList(userSchemes)}
             </ul>
         </div>

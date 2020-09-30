@@ -34,7 +34,7 @@ class Api::SchemesController < ApplicationController
     def destroy
         @scheme = Scheme.find(params[:id])
 
-        if @scheme.destroy
+        if @scheme.destroy!
             render :remove
         else
             render json: @scheme.errors.full_messages, status: 422

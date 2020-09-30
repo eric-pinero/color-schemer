@@ -8,7 +8,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { ColorsContext } from '../contexts/ColorsContext';
 
 
-const ColorSchemeView = ({title, swatches}) => {
+const ColorSchemeView = ({title, swatches, match}) => {
     const startingTitle = title ? title : '';
     const [schemeTitle, setSchemeTitle] = useState(startingTitle);
     const [scheme, setScheme] = useContext(SchemeContext);
@@ -63,8 +63,7 @@ const ColorSchemeView = ({title, swatches}) => {
         )))
     }
 
-    const schemeCreateArea = swatches ? [schemeNameField, schemeSubmitButton] : null;
-
+    
     const schemeNameField = scheme.length ?             
         <input
             onChange={(e) => setSchemeTitle(e.target.value)}
@@ -74,21 +73,22 @@ const ColorSchemeView = ({title, swatches}) => {
         :
         null
     ;
-
     const schemeSubmitButton = scheme.length ? <button onClick={handleSchemeSubmit}>Submit</button> : null;
-
+    
     const schemeViewStyle = scheme.length ? 'border-1 border-rad-15 border-red bg-lightyellow padding-10' : '';
+    const schemeCreateArea = match ?  null : <div>{schemeNameField} {schemeSubmitButton}</div>
 
-    debugger
     return(
+        <>
         <div className='flex column w-45percent h-fit red'>
             <h2 className='f-20 padding-10'>{schemeTitle}</h2>
             <ul className={schemeViewStyle}>
                 {schemeView}
             </ul>
             {schemeCreateArea}
-            {schemeSaved}
         </div>
+        {schemeSaved}
+        </>
     );
 }
 
