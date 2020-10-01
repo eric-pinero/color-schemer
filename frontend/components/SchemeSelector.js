@@ -9,7 +9,7 @@ const SchemeSelector = () => {
                 <h2 className="f-20 padding-10 red">Army Painter Colors</h2>
                 <ColorDropdown/>
             </div>
-            <ColorSchemeView className="margin-5 border-1" title='' swatches={null} />
+            <ColorSchemeView className="margin-5 border-1" title='' swatches={null} schemeId={null} />
       </div>
     )
 }

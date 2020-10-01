@@ -11,16 +11,17 @@ const ShowScheme = ({match}) =>{
     const [userSchemes] = useContext(UserSchemesContext);
     const schemeOwnerId = match.params.userId
     const schemeId = match.params.schemeId
+
     useEffect(() => {
         correctUserCheck(currentUser, schemeOwnerId)
-
     },[])
+    
     const scheme = userSchemes[schemeId]
     if(!scheme) return <Redirect to={`/`}/>
     return (
         <div className='flex column txt-left margin-default w-80percent 
          bg-lightyellow align-center padding-10 line-h-1pt5 min-h-80vh h-fit'>
-            <ColorSchemeView title= {scheme.title} swatches={scheme.scheme_swatches}/>
+            <ColorSchemeView title= {scheme.title} swatches={scheme.scheme_swatches} schemeId={schemeId}/>
         </div>
     )
 }

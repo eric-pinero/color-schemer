@@ -8,7 +8,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { ColorsContext } from '../contexts/ColorsContext';
 
 
-const ColorSchemeView = ({title, swatches, match}) => {
+const ColorSchemeView = ({title, swatches, schemeId}) => {
     const startingTitle = title ? title : '';
     const [schemeTitle, setSchemeTitle] = useState(startingTitle);
     const [scheme, setScheme] = useContext(SchemeContext);
@@ -76,11 +76,12 @@ const ColorSchemeView = ({title, swatches, match}) => {
     const schemeSubmitButton = scheme.length ? <button onClick={handleSchemeSubmit}>Submit</button> : null;
     
     const schemeViewStyle = scheme.length ? 'border-1 border-rad-15 border-red bg-lightyellow padding-10' : '';
-    const schemeCreateArea = match || !currentUser ?  null : <div>{schemeNameField} {schemeSubmitButton}</div>
+    debugger
+    const schemeCreateArea = schemeId || !currentUser ?  null : <div>{schemeNameField} {schemeSubmitButton}</div>
 
     return(
         <>
-        <div className='flex column w-45percent h-fit red'>
+        <div className='flex column w-45percent h-fit red align-center'>
             <h2 className='f-20 padding-10'>{schemeTitle}</h2>
             <ul className={schemeViewStyle}>
                 {schemeView}
