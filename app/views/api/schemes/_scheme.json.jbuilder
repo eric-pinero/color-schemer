@@ -1,1 +1,1 @@
-json.extract!  scheme, :id, :title, :owner_id, :scheme_swatches
+json.extract! scheme, :id, :title, :owner_id, :scheme_swatches

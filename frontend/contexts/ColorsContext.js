@@ -10,13 +10,11 @@ export const ColorsContextProvider = (props) =>{
         fetchColors().then((colors) =>{
             setColorsContext(colors)
         })
-
     }
 
     useEffect(()=>{
         retrieveColors();
     }, [])
-
 
     return(
         <ColorsContext.Provider value={[colorsContext, setColorsContext]}>
