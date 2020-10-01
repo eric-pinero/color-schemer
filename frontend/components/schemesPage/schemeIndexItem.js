@@ -10,5 +10,4 @@ const SchemeIndexItem = ({scheme, match}) => {
         </Link>
     )
 };
-
 export default SchemeIndexItem;
