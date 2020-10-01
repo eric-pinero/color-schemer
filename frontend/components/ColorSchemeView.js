@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import SchemeSwatch from './SchemeSwatch';
 import { fetchUser } from '../util/userAPIUtil'
-import { createScheme, fetchScheme } from '../util/schemeAPIUtil';
+import { createScheme } from '../util/schemeAPIUtil';
 import { createSchemeSwatch } from '../util/schemeSwatchAPIUtil'
 import { SchemeContext } from '../contexts/SchemeContext'
 import { CurrentUserContext } from '../contexts/CurrentUserContext';

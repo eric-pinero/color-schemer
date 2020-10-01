@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 
 const SchemeIndexItem = ({scheme, match}) => {
     const schemeOwnerId = match.params.userId;

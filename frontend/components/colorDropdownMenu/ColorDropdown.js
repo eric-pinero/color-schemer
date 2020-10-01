@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, {useState, useContext } from 'react'
 import SelectedColors from './SelectedColors'
 import { SchemeContext } from '../../contexts/SchemeContext'
 import { ColorsContext } from '../../contexts/ColorsContext'
