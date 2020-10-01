@@ -52,7 +52,7 @@ const SelectedColors = ({dropdownVisible, setDropdownVisible, searchCriteria, se
                 value={searchCriteria}
             />
             <button 
-                className={`relative cursor bg-lightyellow red border-1 border-rad-5 border-red`} 
+                className={`pointer relative cursor bg-lightyellow red border-1 border-rad-5 border-red`} 
                 onClick={(e) => setDropdownVisible(!dropdownVisible)}
             >
                 {buttonRotation}

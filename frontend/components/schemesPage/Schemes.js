@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { CurrentUserContext} from '../../contexts/CurrentUserContext';
 import { UserSchemesContext } from '../../contexts/UserSchemesContext'
-import SchemeIndexItem from './SchemeIndexItem';
 import { fetchUserSchemes } from '../../util/schemeAPIUtil';
 import correctUserCheck from '../../functions/correctUserCheck';
+import SchemeIndexItem from './SchemeIndexItem';
 import DeleteSchemeButton from './DeleteSchemeButton';
-import { Redirect } from 'react-router-dom';
 
 const Schemes = ({match}) => {
     const [currentUser] = useContext(CurrentUserContext)

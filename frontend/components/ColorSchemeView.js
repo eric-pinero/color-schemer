@@ -76,7 +76,7 @@ const ColorSchemeView = ({title, swatches, match}) => {
     const schemeSubmitButton = scheme.length ? <button onClick={handleSchemeSubmit}>Submit</button> : null;
     
     const schemeViewStyle = scheme.length ? 'border-1 border-rad-15 border-red bg-lightyellow padding-10' : '';
-    const schemeCreateArea = match ?  null : <div>{schemeNameField} {schemeSubmitButton}</div>
+    const schemeCreateArea = match || !currentUser ?  null : <div>{schemeNameField} {schemeSubmitButton}</div>
 
     return(
         <>
