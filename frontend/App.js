@@ -54,7 +54,6 @@ const App = () => {
               <Route exact path="/:userId/schemes" component={Schemes}/>
               <Route exact path="/:userId/scheme/:schemeId" component={SchemeShow}/>
               <Route path="/" component={DefaultPage}/>
-                {/* {activeTab} */}
             </Switch>
           </ColorsContextProvider>
           </UserSchemesProvider>

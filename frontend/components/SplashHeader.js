@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom'
 import paints from '../paints.json';
-import Schemes from './schemesPage/Schemes'
 import { logout } from '../util/sessionAPIUtil'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 

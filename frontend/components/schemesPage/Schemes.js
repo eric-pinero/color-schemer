@@ -39,7 +39,7 @@ const Schemes = ({match}) => {
         const schemeListItems = []
         for(const schemeId in schemes){
             schemeListItems.push(
-                <li key={schemeId}>
+                <li className="flex space-around" key={schemeId}>
                     <SchemeIndexItem match={match} scheme={schemes[schemeId]}/>
                     <DeleteSchemeButton schemeId={schemeId}/>
                 </li>
@@ -55,7 +55,7 @@ const Schemes = ({match}) => {
             <h2 className='red bold f-30 txt-center border-b-s-1 border-red w-80percent'>
                 Your Schemes
             </h2>
-            <ul className='padding-t-10'>
+            <ul className='padding-t-10 w-25percent'>
                 {makeSchemeList(userSchemes)}
             </ul>
         </div>

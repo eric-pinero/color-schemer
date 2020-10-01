@@ -17,9 +17,6 @@ const ShowScheme = ({match}) =>{
     },[])
     const scheme = userSchemes[schemeId]
     if(!scheme) return <Redirect to={`/`}/>
-    // const swatches = scheme.scheme_swatches.map((swatch) =>{
-    //     return <SchemeSwatch paintId={swatch.color_id}/>
-    // })
     return (
         <div className='flex column txt-left margin-default w-80percent 
          bg-lightyellow align-center padding-10 line-h-1pt5 min-h-80vh h-fit'>
