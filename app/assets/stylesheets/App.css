@@ -1,7 +1,17 @@
 a {
   text-decoration: none;
   transition: color 125ms;
+  color: inherit;
 }
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
 
 Link {
   text-decoration: none;
@@ -190,6 +200,11 @@ button{
   width: 200px;
 }
 
+.box-300{
+  height: 300px;
+  width: 300px;
+}
+
 .box-25percent{
   height: 25%;
   width: 25%;
@@ -203,6 +218,10 @@ button{
 
 .h-25px{
   height: 25px;
+}
+
+.h-200px{
+  height: 200px;
 }
 
 .h-100percent{
@@ -241,6 +260,10 @@ button{
 
 .w-200{
   width: 200px;
+}
+
+.w-300{
+  width: 300px;
 }
 
 .w-25percent{

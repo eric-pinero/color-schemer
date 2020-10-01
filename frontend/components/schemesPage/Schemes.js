@@ -5,11 +5,14 @@ import SchemeIndexItem from './SchemeIndexItem';
 import { fetchUserSchemes } from '../../util/schemeAPIUtil';
 import correctUserCheck from '../../functions/correctUserCheck';
 import DeleteSchemeButton from './DeleteSchemeButton';
+import { Redirect } from 'react-router-dom';
 
 const Schemes = ({match}) => {
     const [currentUser] = useContext(CurrentUserContext)
     const [userSchemes, setUserSchemes] = useContext(UserSchemesContext)
     const schemeOwnerId = match.params.userId;
+
+    if(!currentUser) return <Redirect to="/"/>
 
     useEffect(() => {
         correctUserCheck(currentUser, schemeOwnerId)

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import paints from '../paints.json';
 import Schemes from './schemesPage/Schemes'
 import { logout } from '../util/sessionAPIUtil'
@@ -55,9 +55,9 @@ const SplashHeader = ({ setSessionModal }) => {
     ;   
 
     const logoutLink = currentUser ?
-        <p className='white link pointer bold padding-l-10' 
+        <Link to='/' className='white link pointer bold padding-l-10' 
             onClick={() => handleLogout()}>Logout
-        </p>
+        </Link>
         :
         null
     ;
@@ -88,16 +88,14 @@ const SplashHeader = ({ setSessionModal }) => {
                     {colorName}
                 </button>
             </div>
-            <div className='flex justify-center margin-bottom-10 default-margin f-20'>
+            <div className='white flex justify-center margin-bottom-10 default-margin f-20'>
                 <Link to='/about'>
-                    <p className='white link pointer bold border-r-s-1 border-white padding-r-10' >
+                    <p className='link pointer bold border-r-s-1 border-white padding-r-10' >
                         About
                     </p>
                 </Link>
-                <Link to='/scheme_selector'>
-                    <p className='white link pointer bold padding-l-10 border-r-s-1 border-white padding-r-10'>
-                        Scheme Selector
-                    </p>
+                <Link className='link pointer bold padding-l-10 border-r-s-1 border-white padding-r-10' 
+                    to='/scheme_selector'>Scheme Selector
                 </Link>
                 {schemesLink}
                 {logoutLink}

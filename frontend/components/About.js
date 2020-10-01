@@ -15,8 +15,8 @@ const About = () =>{
                 </p>
            </div>
            <img 
-                className="box-200 padding-20" 
-                src="https://pghknitandcrochet.com/2016/wp-content/uploads/2016/08/Color-Wheel-Basics-Full-RGB-color-wheel-600x600.jpg"
+                className="h-200 w-300 padding-20" 
+                src="https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2011/7/18/0/HGTV_Color-Wheel-Full_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1400967008479.jpeg"
                 alt="A color wheel"
             />
            <p className="padding-5">
@@ -37,7 +37,7 @@ const About = () =>{
                Have I, in my infinite wisdom, "solved" color theory?
            </p>
            <img 
-                className="box-200 padding-20" 
+                className="box-300 padding-20" 
                 src="https://www.sessions.edu/wp-content/uploads/kisspng-color-wheel.png"
                 alt="color wheel with all possible color combinations"
             />
