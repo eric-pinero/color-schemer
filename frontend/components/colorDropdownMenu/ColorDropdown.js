@@ -7,7 +7,7 @@ const ColorDropdown = () => {
     const [colors] = useContext(ColorsContext)
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [searchCriteria, setSearchCriteria] = useState("");
-    const [scheme, setScheme] = useContext(SchemeContext)
+    const [scheme, setScheme] = useContext(SchemeContext);
 
 
     const colorsArr = colors ? buildColorArr(colors) : [];
@@ -45,6 +45,7 @@ const ColorDropdown = () => {
         )
 
     }
+    
     const paintSearch = searchCriteria.length ? colorsArr.filter(paint => {
         const lowerPaintName = paint.name.toLowerCase();
         const lowerSearchCriteria = searchCriteria.toLowerCase();
@@ -53,6 +54,7 @@ const ColorDropdown = () => {
     : 
         null
     ;
+    
     const displayedPaints = paintSearch ? paintSearch : colorsArr;
     const paintItems = displayedPaints.map(
         paint => {

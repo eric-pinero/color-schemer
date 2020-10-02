@@ -26,6 +26,17 @@ const SelectedColors = ({dropdownVisible, setDropdownVisible, searchCriteria, se
         ) 
     }
 
+    const handleSearchChange = (e) => {
+        setSearchCriteria(e.target.value)
+        const searchLength = e.target.value.length;
+
+        if (searchLength){
+            setDropdownVisible(true)
+        } else{
+            setDropdownVisible(false)
+        }
+    }
+
     const handleRemove = (paint) => {
         const paintIndex = scheme.indexOf(paint);
         const updatedScheme = [...scheme];
@@ -42,13 +53,14 @@ const SelectedColors = ({dropdownVisible, setDropdownVisible, searchCriteria, se
     const buttonRotation = dropdownVisible ? <span>&#x25BC;</span> : <span>&#x25B2;</span>;
     
     const selectedColorItems = scheme.length ? selectedColorsBuilder(scheme) : null;
-    let selectedColorsList = 
+
+    const selectedColorsList = 
     <ul className="flex bg-white border-rad-5 w-100percent flex-wrap" >
         <div className="flex space-between w-100percent">    
             <input 
                 className={`outline-none border-none ${separator} margin-l-10 margin-r-10 h-25px w-100percent pointer`} 
                 placeholder={placeholderText} type="text" 
-                onChange={(e) => setSearchCriteria(e.target.value)}
+                onChange={(e) => handleSearchChange(e)}
                 value={searchCriteria}
             />
             <button 
