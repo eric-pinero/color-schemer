@@ -49,7 +49,6 @@ const SelectedColors = ({dropdownVisible, setDropdownVisible, searchCriteria, se
     }
 
     const separator = scheme.length ? "border-b-s-1 border-red" : "";
-
     const buttonRotation = dropdownVisible ? <span>&#x25BC;</span> : <span>&#x25B2;</span>;
     
     const selectedColorItems = scheme.length ? selectedColorsBuilder(scheme) : null;

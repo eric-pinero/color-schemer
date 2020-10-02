@@ -224,8 +224,8 @@ button{
   height: 200px;
 }
 
-.h-100percent{
-  height: 100%;
+.h-90percent{
+  height: 90%;
 }
 
 .h-107percent{
@@ -234,6 +234,9 @@ button{
 
 .vh-50percent{
   height: 50vh;
+}
+.vh-60percent{
+  height: 60vh;
 }
 
 .vh-100percent{
@@ -431,15 +434,19 @@ button{
 .margin-l-10 {
   margin-left: 10px;
 }
+
 .margin-r-10{
   margin-right: 10px;
 }
+
 .margin-b-5 {
   margin-bottom: 5px;
 }
+
 .margin-b-10 {
   margin-bottom: 10px;
 }
+
 .margin-b-20 {
   margin-bottom: 20px;
 }

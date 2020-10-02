@@ -37,7 +37,20 @@ const ColorSchemeView = ({title, swatches, schemeId}) => {
             paint => <SchemeSwatch className='border-1' paintId={paint.id} key={paint.id}/>
         )
        :
-       null
+       <div className='vh-60percent'>
+            <h3 className='bold border-b-s-1 border-red margin-b-10'>How to Scheme</h3>
+            <ul className='h-90percent margin-b-10 flex column space-between align-start'>
+                <li>Click the arrow or start typing in the search field</li>
+                <li>Click on colors to select them and add them to your scheme</li>
+                <li>Swatches will appear with the complements of your selection</li>
+                <li>Login to save your schemes</li>
+                <li>Smock up before painting</li>
+                <li><iframe src="https://giphy.com/embed/xT9Igmxor5ijVnu7QI" 
+                    width="480" height="269" frameBorder="0" class="" 
+                    allowFullScreen/>
+                </li>
+            </ul>
+        </div>
     ;
 
     const handleSchemeSubmit = () =>{
@@ -75,7 +88,7 @@ const ColorSchemeView = ({title, swatches, schemeId}) => {
     ;
     const schemeSubmitButton = scheme.length ? <button onClick={handleSchemeSubmit}>Submit</button> : null;
     
-    const schemeViewStyle = scheme.length ? 'border-1 border-rad-15 border-red bg-lightyellow padding-10' : '';
+    const schemeViewStyle = 'border-1 border-rad-15 border-red bg-lightyellow padding-10';
     const schemeCreateArea = schemeId || !currentUser ?  null : <div>{schemeNameField} {schemeSubmitButton}</div>
 
     return(
