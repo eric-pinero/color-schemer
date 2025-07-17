@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+    mode: 'development',
     context: __dirname,
     entry: './frontend/index.js',
     output: {
@@ -17,7 +18,7 @@ module.exports = {
                 exclude: /(node_modules)/,
                 use: {
                     loader: 'babel-loader',
-                    query: {
+                    options: {
                         presets: ['@babel/env', '@babel/react']
                     }
                 },
@@ -25,10 +26,10 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                  'style-loader',
-                  'css-loader'
+                    'style-loader',
+                    'css-loader'
                 ]
-              }
+            }
         ]
     },
     devtool: 'eval-source-map'

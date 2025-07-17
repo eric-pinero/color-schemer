@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import '../app/assets/stylesheets/App.css'
 import '../app/assets/stylesheets/reset.css'
 import SplashHeader from './components/SplashHeader';
@@ -15,50 +15,50 @@ import { UserSchemesProvider } from './contexts/UserSchemesContext'
 import { CurrentUserContext } from './contexts/CurrentUserContext'
 import { ColorsContextProvider } from './contexts/ColorsContext';
 
-const App = () => {  
+const App = () => {
   let [sessionModal, setSessionModal] = useState(null);
   let [currentUser, setCurrentUser] = useContext(CurrentUserContext)
 
-  useEffect(()=>{
-      if (window.currentUser){
-        setCurrentUser(window.currentUser)
-        delete window.currentUser
-      }
-    },[]
+  useEffect(() => {
+    if (window.currentUser) {
+      setCurrentUser(window.currentUser)
+      delete window.currentUser
+    }
+  }, []
   )
 
-  let greyOut = sessionModal ?         
-    <div 
-      className= "absolute top-0 left-0 w-100percent h-107percent z-1 opacity-50 bg-black" 
+  let greyOut = sessionModal ?
+    <div
+      className="absolute top-0 left-0 w-100percent h-107percent z-1 opacity-50 bg-black"
       onClick={() => setSessionModal(null)}
     />
     :
     null
 
   const modal = sessionModal ?
-    <SessionModal sessionModal={sessionModal} setSessionModal={setSessionModal}/> 
-    : 
+    <SessionModal sessionModal={sessionModal} setSessionModal={setSessionModal} />
+    :
     null
-  ;
+    ;
   return (
     <div className="App">
       <Router>
         <div className="min-h-80percent h-fit bg-yellow">
-          <SplashHeader setSessionModal={setSessionModal}/>
+          <SplashHeader setSessionModal={setSessionModal} />
           <SchemeProvider>
-          <UserSchemesProvider>
-          <ColorsContextProvider>
-            <Switch>
-              <Route exact path="/about" component={About}/>
-              <Route exact path="/scheme_selector" component={SchemeSelector}/>
-              <Route exact path="/:userId/schemes" component={Schemes}/>
-              <Route exact path="/:userId/scheme/:schemeId" component={SchemeShow}/>
-              <Route path="/" component={DefaultPage}/>
-            </Switch>
-          </ColorsContextProvider>
-          </UserSchemesProvider>
+            <UserSchemesProvider>
+              <ColorsContextProvider>
+                <Routes>
+                  <Route path="/about" element={<About />} />
+                  <Route path="/scheme_selector" element={<SchemeSelector />} />
+                  <Route path="/:userId/schemes" element={<Schemes />} />
+                  <Route path="/:userId/scheme/:schemeId" element={<SchemeShow />} />
+                  <Route path="/" element={<DefaultPage />} />
+                </Routes>
+              </ColorsContextProvider>
+            </UserSchemesProvider>
           </SchemeProvider>
-          <Footer/>
+          <Footer />
         </div>
         {greyOut}
         {modal}
@@ -67,6 +67,6 @@ const App = () => {
   );
 };
 
-const DefaultPage = () => <Redirect to="/scheme_selector"/>
+const DefaultPage = () => <Navigate to="/scheme_selector" replace />
 
 export default App;

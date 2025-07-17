@@ -1,22 +1,49 @@
-export const createScheme = (scheme) => (
-    $.ajax({
-        url: '/api/schemes',
+export const createScheme = (scheme) => {
+    return fetch('/api/schemes', {
         method: 'POST',
-        data: { scheme },
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ scheme }),
     })
-);
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        });
+};
 
-export const deleteScheme = (schemeId) => (
-    $.ajax({
-        url: `/api/schemes/${schemeId}`,
+export const deleteScheme = (schemeId) => {
+    return fetch(`/api/schemes/${schemeId}`, {
         method: 'DELETE',
+        headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
     })
-)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        });
+};
 
 export const fetchUserSchemes = (userId) => {
-    return $.ajax({
-        url: `/api/schemes`,
+    const url = new URL('/api/schemes', window.location.origin);
+    url.searchParams.append('userId', userId);
+
+    return fetch(url, {
         method: 'GET',
-        data: { userId }
+        headers: {
+            'Content-Type': 'application/json',
+        },
     })
-}
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        });
+};
